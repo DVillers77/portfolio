@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Resource hints for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+
+    <!-- The actual stylesheet link for the font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ICON LIBRARY -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <link rel="stylesheet" href="css/stylesheet.css" />
+
+    <title>Dave's Portfolio</title>
+  </head>
+  <body id="top">
+    <header>
+      <!--TOP NAVBAR -->
+      <nav class="navbar" id="myNavbar" aria-label="Main navigation">
+        <!-- Hamburger button visible on mobile -->
+        <a
+          href="javascript:void(0);"
+          class="icon"
+          onclick="myFunction()"
+          role="button"
+          aria-label="Toggle navigation menu"
+          aria-controls="nav-links-menu"
+          aria-expanded="false"
+        >
+          <i class="fa fa-bars"></i>
+        </a>
+
+        <!-- Menu links container -->
+        <div class="nav-links" id="nav-links-menu">
+          <a class="active active-page-name" aria-current="page"
+            ><i class="fa fa-fw fa-fort-awesome"></i> Home</a
+          >
+          <a href="./about.html"><i class="fa fa-fw fa-heartbeat"></i> About</a>
+          <a href="./projects.html"
+            ><i class="fa fa-fw fa-code"></i> Projects</a
+          >
+          <a
+            href="https://github.com/the-tech-academy"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><i class="fa fa-fw fa-github"></i> GitHub</a
+          >
+          <a href="./contact.html"
+            ><i class="fa fa-fw fa-hand-o-right"></i> Contact</a
+          >
+        </div>
+      </nav>
+    </header>
+    <!-- MAIN PORTFOLIO CONTENT -->
+    <main class="portfolio-container">
+      <!-- ROW 1 (Image Left, Text Right) -->
+      <section class="portfolio-row">
+        <div class="portfolio-image-column">
+          <img
+            src="images/under-construction-magic-md.png"
+            alt="Illustration of a fantasy castle with an 'UNDER CONSTRUCTION' sign, symbolizing both an upcoming homepage and a portfolio in progress."
+          />
+        </div>
+        <div class="portfolio-text-column">
+          <h1>David Villers' Portfolio</h1>
+          <p>
+            Welcome to my portfolio website. In it, I will tell you about my
+            background, experience and show you a preview of some of my
+            projects.
+          </p>
+          <p>
+            For a more in-depth view of my projects and educational process
+            while attending the Tech Academy UI/UX Design Bootcamp please use
+            the GitHub link. To get in touch please use the form on my contact
+            page. I look forward to chatting with you about design and or job
+            opportunities.
+          </p>
+          <p>
+            Below are some quotes reflecting ideas that are important to my
+            personal and design philosophies.
+          </p>
+        </div>
+      </section>
+
+      <!-- ROW 2 (Image Right, Text Left) -->
+      <section class="portfolio-row reverse">
+        <div class="portfolio-image-column">
+          <img
+            src="images/flying-steam-engine-md.png"
+            alt='A fantastical
+      steampunk flying train with prominent wings and smoking chimneys soars
+      through sunlit clouds above a detailed, elaborate cityscape at golden
+      hour, embodying "Curiosity is the engine of achievement."'
+          />
+        </div>
+        <div class="portfolio-text-column">
+          <h2>The importance of Curiosity</h2>
+          <figure>
+            <blockquote>
+              <p>“Curiosity is the engine of achievement.”</p>
+            </blockquote>
+            <figcaption>—&nbsp; Ken Robinson</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- Row 3 (Image Left, Text Right) -->
+      <section class="portfolio-row">
+        <div class="portfolio-image-column">
+          <img
+            src="images/sketchplanations-the-curb-cut-effect-md.png"
+            alt="Curb-Cut Effect illustration: A sidewalk ramp benefits a diverse group including a person in a wheelchair, parents with strollers, travelers with luggage, delivery persons, and cyclists. Text reads: 'WHEN WE DESIGN FOR DISABILITIES ... WE MAKE THINGS BETTER FOR EVERYONE. Sketchplanations.'"
+          />
+        </div>
+        <div class="portfolio-text-column">
+          <h2>The Power of Inclusive Design</h2>
+          <figure>
+            <blockquote>
+              <p>"Opportunity doesn't trickle down; it cascades out and up"</p>
+            </blockquote>
+            <figcaption>—&nbsp; Angela Glover Blackwell</figcaption>
+          </figure>
+        </div>
+      </section>
+      <!-- Row 4(Image Right, Text Left) -->
+      <section class="portfolio-row reverse">
+        <div class="portfolio-image-column">
+          <img
+            src="images/designing-for-people-md.png"
+            alt="Conceptual image depicting a human mind integrated with mechanical gears, illustrating the importance of understanding human cognition when designing technology."
+          />
+        </div>
+        <div class="portfolio-text-column">
+          <h2>Designing for people, not technology</h2>
+          <figure>
+            <blockquote>
+              <p>
+                "Usability is about people and how they understand and use
+                things, not technology"
+              </p>
+            </blockquote>
+            <figcaption>—&nbsp; Steve Krug</figcaption>
+          </figure>
+        </div>
+      </section>
+      <!-- Row 3 (Image Left, Text Right) -->
+      <section class="portfolio-row">
+        <div class="portfolio-image-column">
+          <img
+            src="images/dain-miller-sadle-reigns-quote-md.png"
+            alt="A conceptual digital illustration depicting a silhouetted figure confidently riding a glowing wireframe horse, its form made of digital elements and geometric, luminous UI-like saddle, stirrups, and reins. The overall scene is enveloped in a radiant, swirling aura of abstract colors, symbolizing the positive user experience (UX) derived from intuitive user interface (UI). This imagery visually represents Dain Miller's quote: 'UI is the saddle, the stirrups, & the reins. UX is the feeling you get from being able to ride the horse'."
+          />
+        </div>
+        <div class="portfolio-text-column">
+          <h2>From Interface to Intuition: The UX Journey</h2>
+          <figure>
+            <blockquote>
+              <p>
+                "UI is the saddle, the stirrups, & the reigns. UX is the feeling
+                you get from being able to ride the horse"
+              </p>
+            </blockquote>
+            <figcaption>—&nbsp; Dain Miller</figcaption>
+          </figure>
+        </div>
+      </section>
+    </main>
+    <!-- FOOTER NAVBAR -->
+    <footer>
+      <nav class="navbar bottom" aria-label="Footer navigation">
+        <a class="active" href="#top"
+          ><i class="fa fa-fw fa-arrow-up"></i> Back to Top</a
+        >
+        <a href="./about.html"><i class="fa fa-fw fa-heartbeat"></i> About</a>
+        <a href="./projects.html"><i class="fa fa-fw fa-code"></i> Projects</a>
+
+        <a
+          href="https://github.com/the-tech-academy"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><i class="fa fa-fw fa-github"></i> GitHub</a
+        >
+        <a href="./contact.html"
+          ><i class="fa fa-fw fa-hand-o-right"></i> Contact</a
+        >
+      </nav>
+    </footer>
+    <!-- Link to the external JavaScript file -->
+    <script src="js/script.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Resource hints for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+
+    <!-- The actual stylesheet link for the font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ICON LIBRARY -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <link rel="stylesheet" href="css/stylesheet.css" />
+
+    <title>Contact</title>
+  </head>
+  <body id="top">
+    <header>
+      <!--TOP NAVBAR -->
+      <nav class="navbar" id="myNavbar" aria-label="Main navigation">
+        <!-- Hamburger button visible on mobile -->
+        <a
+          href="javascript:void(0);"
+          class="icon"
+          onclick="myFunction()"
+          role="button"
+          aria-label="Toggle navigation menu"
+          aria-controls="nav-links-menu"
+          aria-expanded="false"
+        >
+          <i class="fa fa-bars"></i>
+        </a>
+        <!-- Menu links container -->
+        <div class="nav-links">
+          <a href="./index.html"
+            ><i class="fa fa-fw fa-fort-awesome"></i> Home</a
+          >
+          <a href="./about.html"><i class="fa fa-fw fa-heartbeat"></i> About</a>
+          <a href="./projects.html"
+            ><i class="fa fa-fw fa-code"></i> Projects</a
+          >
+          <a
+            href="https://github.com/the-tech-academy"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><i class="fa fa-fw fa-github"></i> GitHub</a
+          >
+          <a class="active active-page-name" aria-current="page"
+            ><i class="fa fa-fw fa-hand-o-right"></i> Contact</a
+          >
+        </div>
+      </nav>
+    </header>
+
+    <!-- MAIN PORTFOLIO CONTENT -->
+    <main class="portfolio-container">
+      <!-- ROW 1 (Image Left, Text Right) -->
+      <section class="portfolio-row">
+        <div class="portfolio-image-column">
+          <img
+            src="images/sketchplanations-the-curb-cut-effect-md.png"
+            alt="Curb-Cut Effect illustration: A sidewalk ramp benefits a diverse group including a person in a wheelchair, parents with strollers, travelers with luggage, delivery persons, and cyclists. Text reads: 'WHEN WE DESIGN FOR DISABILITIES ... WE MAKE THINGS BETTER FOR EVERYONE. Sketchplanations.'"
+          />
+        </div>
+        <div class="portfolio-text-column">
+          <h1>Contact Me</h1>
+          <p>
+            If you would like to chat please fill out the contact form below and
+            I will get back to you shortley.
+          </p>
+        </div>
+      </section>
+
+      <!-- ROW 2 (Image Right, Text Left) -->
+      <section class="portfolio-row reverse">
+        <div class="portfolio-image-column">
+          <img
+            src="images/flying-steam-engine-md.png"
+            alt="illustration of a flying steam engine"
+          />
+        </div>
+        <div class="portfolio-text-column">
+          <h2>Contact</h2>
+          <!--This specifies where and how to send the form data; we are leaving it blank-->
+          <form action="" method="post">
+            <!-- Here we are utilizing a 3rd party service to submit the contact form data, insert your formspree endpoint in the action attribute -->
+            <label for="name">Name:</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Please enter your name here"
+            />
+
+            <label for="email">Email:</label>
+            <input
+              type="text"
+              id="email"
+              name="Email"
+              placeholder="Please enter your email here"
+            />
+
+            <label for="message">Message:</label>
+            <textarea
+              id="message"
+              name="Message"
+              placeholder="Please write your message here"
+              rows="5"
+              cols="60"
+            ></textarea>
+
+            <input type="submit" value="submit" />
+          </form>
+        </div>
+      </section>
+
+      <!-- Row 5: Another example with placeholder content -->
+      <section class="portfolio-row">
+        <div class="portfolio-image-column">
+          <img
+            src="images/designing-for-people-md.png"
+            alt="Conceptual image depicting a human mind integrated with mechanical gears, illustrating the importance of understanding human cognition when designing technology."
+          />
+        </div>
+        <div class="portfolio-text-column">
+          <h2>Project 3: Responsive Website Development</h2>
+          <p>
+            Created a fully responsive website from scratch, focusing on
+            information architecture and accessibility to provide a seamless
+            experience across all devices.
+          </p>
+        </div>
+      </section>
+    </main>
+    <!-- FOOTER NAVBAR -->
+    <footer>
+      <nav class="navbar bottom" aria-label="Footer navigation">
+        <a class="active" href="#top"
+          ><i class="fa fa-fw fa-arrow-up"></i> Back to Top</a
+        >
+        <a href="./index.html"><i class="fa fa-fw fa-fort-awesome"></i> Home</a>
+        <a href="./about.html"><i class="fa fa-fw fa-heartbeat"></i> About</a>
+        <a href="./projects.html"><i class="fa fa-fw fa-code"></i> Projects</a>
+        <a
+          href="https://github.com/the-tech-academy"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><i class="fa fa-fw fa-github"></i> GitHub</a
+        >
+      </nav>
+    </footer>
+    <!-- Link to the external JavaScript file -->
+    <script src="js/script.js" defer></script>
+  </body>
+</html>

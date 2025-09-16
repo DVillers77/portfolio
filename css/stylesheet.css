@@ -1,0 +1,376 @@
+/* Main container for spacing */
+.portfolio-container {
+  max-width: 75rem; /* 1200px / 16px */
+  margin: 0 auto;
+}
+
+/* Base style for all portfolio rows */
+.portfolio-row {
+  display: flex; /* Enables flexbox layout for the row */
+  align-items: center; /* Vertically aligns content in the center */
+  padding: 3.75rem 1.25rem; /* 60px / 16px and 20px / 16px */
+}
+
+/* Alternating rows: change direction of content */
+.portfolio-row.reverse {
+  flex-direction: row-reverse;
+}
+
+/* Apply a background color to every odd-numbered row */
+.portfolio-row:nth-of-type(odd) {
+  background-color: #f0fff4; /* A very light gray */
+}
+
+/* Apply a different background color to every even-numbered row */
+.portfolio-row:nth-of-type(even) {
+  background-color: #ffffff; /* White background */
+}
+
+/* Base style for content columns */
+
+/* Image styling */
+.portfolio-image-column {
+  flex: 1; /* Both columns share the available space equally */
+  max-width: 50%; /* Max width for each column on larger screens */
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.portfolio-image-column img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem; /* 8px / 16px */
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2); /* 4px / 16px and 8px / 16px */
+}
+
+/* Text column styling */
+.portfolio-text-column {
+  flex: 1;
+  max-width: 50%;
+  display: flex; /* Make the column a flex container */
+  flex-direction: column;
+  justify-content: center; /* Center the flex item (the figure) horizontally */
+  align-items: center; /* Center the flex item (the figure) vertically */
+  padding: 1.25rem; /* 20px / 16px */
+}
+
+.portfolio-text-column h1,
+h2 {
+  margin-bottom: 1rem;
+  text-align: center;
+  max-width: 26ch;
+}
+
+.portfolio-text-column p {
+  font-size: 1.125rem;
+  line-height: 1.5;
+  max-width: 45ch;
+}
+
+/* Styles for the figure, blockquote, and figcaption */
+.portfolio-text-column figure {
+  margin: 0 auto;
+  width: fit-content;
+}
+
+.portfolio-text-column blockquote {
+  font-style: italic;
+  font-size: 1.25em; /* Em is used here to scale relative to the `<blockquote>`'s `font-size` */
+  color: #333333;
+  border-left: solid 0.1rem #ff00ff;
+  padding: 0.5rem;
+}
+
+.portfolio-text-column figcaption {
+  font-size: 1em; /* Scales relative to the `<blockquote>` font size for proximity */
+  text-align: right;
+  color: #3cb371;
+  margin-top: 0.5em;
+}
+
+/* === Navbar and Base Styles === */
+
+/* Sets base font size and allows rem units to scale relative to user preferences */
+:root {
+  font-size: 100%;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+p {
+  font-family: "Lora", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+p + p {
+  margin-top: 1em; /* Scales with the font size of the p tag */
+}
+
+/* Also apply it to the blockquotes for consistency in the zig-zag layout */
+blockquote {
+  font-family: "Lora", serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* Make sure your h2 and navbar still use the sans-serif font */
+.navbar,
+h1,
+h2 {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar {
+  width: 100%;
+  background-color: #333333;
+  overflow: auto;
+  box-shadow: 0 -0.75rem 0.75rem -0.85rem #ff00ff inset;
+  z-index: 1000;
+}
+
+/* --- Bottom Navbar Styling (Overrides and additions for .bottom class) --- */
+.navbar.bottom {
+  width: 100%;
+  display: flex; /* Flexbox for centering */
+  justify-content: center; /* Center the links */
+  box-shadow: 0 0.75rem 0.75rem -0.85rem #ff00ff inset;
+}
+
+/* Override the floating behavior for links inside the bottom navbar */
+.navbar.bottom a {
+  float: none;
+}
+.navbar a {
+  float: right;
+  padding: 1rem;
+  color: white;
+  text-decoration: none;
+  font-size: 1.125rem; /* 18px / 16px */
+}
+
+.navbar a:hover {
+  background-color: #3cb371;
+  color: #0a0a0a;
+}
+
+/* Specific styles for the active link that override the hover effect */
+.navbar a.active {
+  background-color: #f0fff4; /* Use the desired background color */
+  color: #0a0a0a;
+  float: right;
+}
+
+/* Explicitly prevent the active link's background from changing on hover */
+.navbar a.active:hover {
+  background-color: #f0fff4;
+  cursor: default; /* Change cursor to indicate no action */
+}
+
+.navbar.bottom a.active:hover {
+  background-color: #3cb371;
+  cursor: pointer;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/***** CONTACT FORM STYLING (!!!needs retooling!!!)*****/
+
+/* input boxes -message */
+input[type="text"] {
+  width: 100%; /* Each input box covers the full width of the container */
+  padding: 0.75rem; /* 12px / 16px / Adds padding within the text box */
+  border: 1px solid #ccc; /* Setting a solid border and its color */
+  border-radius: 0.25rem; /*  4px / 16px / Slightly rounds the corners of the text box border */
+  box-sizing: border-box; /* This creates a box with a border around the contact form input boxes */
+  margin-top: 0.375rem; /* 6px / 16px / Adds a margin to the top of the text box */
+  margin-bottom: 1rem; /* 16px / 16px / Adds a margin to the bottom of the text box */
+  resize: vertical; /* This allows the user to resize the text boxes vertically */
+}
+
+/* Hover effects for input boxes */
+input[type="text"]:hover,
+textarea:hover {
+  box-shadow: 0 0 0.3125rem #3cb371 inset; /* 5px / 16px / This creates a blue shadow in the text box when hovered over by the user */
+}
+
+/* Message box effects */
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 0.75rem; /* 12px / 16px */
+  border: 1px solid #3cb371;
+  border-radius: 0.25rem; /* 4px / 16px */
+  box-sizing: border-box;
+  margin-top: 0.375rem; /* 6px / 16px */
+  margin-bottom: 1rem; /* 16px / 16px */
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem; /* 16px / 16px */
+}
+
+/* Submit button */
+input[type="submit"] {
+  background-color: #3cb371; /* Sets the background color of the submit button to black */
+  color: #333333; /* Sets the font color of the Submit button to white */
+  font-weight: bold; /* Makes the font of the submit button bold */
+  padding: 0.75rem 1.25rem; /* 12px / 16px and 20px / 16px / Adds padding to the submit button */
+  border: none; /* Removes the border from the submit button */
+  border-radius: 0.25rem; /* 4px / 16px / Gives the submit button the same rounded corners as the text boxes */
+  cursor: pointer; /* Changes the cursor to pointer when over the submit button */
+  display: block; /* Allows the submit button to be centered */
+  margin-left: auto; /* In combination with "margin-right: auto" this will center the submit button */
+  margin-right: auto;
+  font-size: 1rem;
+}
+
+input[type="submit"]:hover {
+  box-shadow: 0 0 0.3125rem #f0fff4 inset; /* 5px / 16px */
+}
+
+/* Form element */
+form {
+  border-radius: 0.3125rem; /* 5px / 16px */
+  background-color: #f0fff4;
+  padding: 0.625rem; /* 10px / 16px */
+  box-shadow: 0 0 0.25rem #3cb371; /* 4px / 16px */
+  max-width: 90vw; /* Using vw for a form container that scales with the screen */
+  margin: 0 auto;
+}
+
+/* ==================================== */
+/* === 1. Mobile-First Base Styles === */
+/* ==================================== */
+
+/* Hide the menu links by default for mobile */
+.nav-links {
+  display: none;
+}
+
+/* Show the menu links when the `responsive` class is added */
+.navbar.responsive .nav-links {
+  display: block; /* or flex, grid, etc. */
+}
+
+/* Ensure the hamburger icon is visible on mobile */
+.icon {
+  display: block; /* Assuming you hide it later for desktop */
+}
+
+/* ==================================== */
+/* === Responsive Behavior === */
+/* ==================================== */
+/*  use of pix vs relative for consistent visual layout across all browsers and user settings */
+/* Style the space OUTSIDE the 1200px container on large screens */
+@media (min-width: 1201px) {
+  .portfolio-container {
+    position: relative; /* Required for positioning the pseudo-element */
+    max-width: 1200px;
+    margin: 0 auto; /* Centers the container */
+  }
+
+  .portfolio-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 100%;
+    z-index: -1; /* Puts the background behind the content */
+    background-image: radial-gradient(
+      circle,
+      rgba(60, 179, 113, 1) 0%,
+      /* Semi-transparent black at the center */ rgba(240, 255, 244, 1) 70%
+        /* Fading to fully transparent further out */
+    ); /* Your desired accent color */
+  }
+}
+
+@media (max-width: 768px) {
+  .portfolio-row,
+  .portfolio-row.reverse {
+    flex-direction: column; /* Stacks image on top of text on small screens */
+    gap: 20px;
+  }
+
+  .portfolio-image-column,
+  .portfolio-text-column {
+    max-width: 100%; /* Columns take up full width on mobile */
+  }
+
+  /* ==================================== */
+  /* === HAMBURGER MENU CSS === */
+  /* ==================================== */
+  /* Show the active page name by default on mobile */
+  .navbar:not(.responsive) .active-page-name {
+    display: block;
+    color: white;
+    font-weight: bold;
+    padding: 1rem;
+    float: left; /* Aligns the text to the left */
+  }
+
+  /* Adjustments for the mobile navbar */
+  .navbar a {
+    float: none;
+    display: block;
+  }
+
+  /* Base styles for the menu links, hidden by default on mobile */
+  .nav-links {
+    display: none;
+  }
+
+  .navbar .nav-links {
+    display: none; /* Hide the links by default on small screens */
+    flex-direction: column; /* Stack vertically when shown */
+    width: 100%;
+    background-color: #333333;
+  }
+
+  .navbar a:not(.icon) {
+    float: none;
+    text-align: left;
+  }
+
+  /* Show the hamburger icon on smaller screens */
+  .navbar .icon {
+    display: block;
+    float: right;
+    color: #ff00ff;
+  }
+
+  /* Style for the "Home" link in the collapsed menu */
+  .navbar a.active {
+    background-color: #f0fff4;
+    color: #333333;
+  }
+}
+
+/* ================================== */
+/* === 2. Desktop Media Query === */
+/* ================================== */
+
+/* Define a breakpoint for larger screens, e.g., 768px */
+@media screen and (min-width: 768px) {
+  /* On desktop, hide the hamburger icon */
+  .icon {
+    display: none;
+  }
+
+  /* On desktop, show the nav links by default and remove the responsive styles */
+  .nav-links {
+    display: flex;
+    justify-content: flex-end; /* Pushes the links to the far right */
+    align-items: center; /* Vertically centers the links */
+    flex-grow: 1; /* Causes the container to take up all available space */
+  }
+}
