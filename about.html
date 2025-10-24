@@ -22,7 +22,10 @@
 
     <link rel="stylesheet" href="css/stylesheet.css" />
 
-    <title>About</title>
+    <!-- Link to the external JavaScript file -->
+    <script src="js/script.js" defer></script>
+
+    <title>About | Dave's Portfolio</title>
   </head>
   <body id="top">
     <header>
@@ -31,8 +34,8 @@
         <!-- Hamburger button visible on mobile -->
         <a
           href="javascript:void(0);"
-          class="icon"
-          onclick="myFunction()"
+          class="navbar__toggle"
+          onclick="toggleMobileNav()"
           role="button"
           aria-label="Toggle navigation menu"
           aria-controls="nav-links-menu"
@@ -41,154 +44,133 @@
           <i class="fa fa-bars"></i>
         </a>
         <!-- Menu links container -->
-        <div class="nav-links">
-          <a href="./index.html"
+        <div class="navbar__links">
+          <a href="./index.html" class="navbar__link--bracket-left navbar__link"
             ><i class="fa fa-fw fa-fort-awesome"></i> Home</a
           >
-          <a class="active active-page-name" aria-current="page"
+          <a class="active active-page-name navbar__link" aria-current="page"
             ><i class="fa fa-fw fa-heartbeat"></i> About</a
           >
-          <a href="./projects.html"
+          <a
+            href="./projects.html"
+            class="navbar__link--bracket-right navbar__link"
             ><i class="fa fa-fw fa-code"></i> Projects</a
           >
           <a
-            href="https://github.com/the-tech-academy"
+            href="https://github.com/DVillers77"
             target="_blank"
             rel="noopener noreferrer"
+            class="navbar__link"
             ><i class="fa fa-fw fa-github"></i> GitHub</a
           >
-          <a href="./contact.html"
+          <a class="navbar__link--contact-trigger navbar__link" href="#"
             ><i class="fa fa-fw fa-hand-o-right"></i> Contact</a
           >
         </div>
       </nav>
     </header>
 
-    <!-- MAIN PORTFOLIO CONTENT -->
-    <main class="portfolio-container">
+    <!-- MAIN PORTFOLIO ZIGZAG CONTENT -->
+    <main class="project-container">
       <!-- ROW 1 (Image Left, Text Right) -->
-      <section class="portfolio-row">
-        <div class="portfolio-image-column">
+      <section class="project-row">
+        <div class="project-row__image">
           <img
             src="images/profilepic01-md.jpg"
-            alt="Placeholder image for Project 1"
+            alt="Picture of David Villers in front of wall of wireframes and sketches"
           />
         </div>
-        <div class="portfolio-text-column">
-          <h1>About David Villers</h1>
-          <p>More about me.</p>
+        <div class="project-row__text">
+          <h1>Hello, I'm Dave.</h1>
+          <h2>
+            A UX Designer with a Human-Centric Foundation and Technical
+            Proficiency.
+          </h2>
         </div>
       </section>
 
       <!-- ROW 2 (Image Right, Text Left) -->
-      <section class="portfolio-row reverse">
-        <div class="portfolio-image-column">
+      <section class="project-row reverse">
+        <div class="project-row__image">
           <img
-            src="images/flying-steam-engine-md.png"
-            alt="illustration of a flying steam engine"
+            src="images/sketchplanations-the-curb-cut-effect-md.png"
+            alt="Curb-Cut Effect illustration: A sidewalk ramp benefits a diverse group including a person in a wheelchair, parents with strollers, travelers with luggage, delivery persons, and cyclists. Text reads: 'WHEN WE DESIGN FOR DISABILITIES ... WE MAKE THINGS BETTER FOR EVERYONE. Sketchplanations.'"
           />
         </div>
-        <div class="portfolio-text-column">
-          <h2>More about me</h2>
+        <div class="project-row__text">
+          <h3>From Empathy to User Experience</h3>
           <p>
-            Bacon ipsum dolor amet landjaeger nostrud pariatur, ribeye aliqua
-            porchetta in nisi magna cupim cupidatat proident. Kevin pork belly
-            non, andouille bresaola fugiat pork chop sunt ut ex tempor corned
-            beef tri-tip consequat. Pork chop reprehenderit shoulder sausage
-            mollit et biltong occaecat turducken sint bacon. Short ribs alcatra
-            t-bone pork chop. Ground round ball tip shank, ut porchetta ea cow
-            enim pariatur fugiat pastrami. Pork culpa chicken andouille ullamco
-            tenderloin landjaeger pork chop ham hock cillum pig aliqua esse.
-            Chuck labore turducken, laborum venison in meatloaf aliqua
+            After two decades dedicated to fostering well-being as a Massage
+            Therapist—including running my own successful practice for over five
+            years—I recognized **UX Design as the natural evolution of my
+            lifelong passions**. It is a field where my deep-seated empathy,
+            keen observation skills, and affinity for design converge to solve
+            meaningful problems.
+          </p>
+          <p>
+            My experience running a practice cultivated a profound understanding
+            of human needs, active listening, and **problem-solving through a
+            human-centered lens**—skills directly transferable to creating
+            intuitive, impactful user experiences.
           </p>
         </div>
       </section>
 
       <!-- Row 3: Example of a project with placeholder content -->
-      <section class="portfolio-row">
-        <div class="portfolio-image-column">
+      <section class="project-row">
+        <div class="project-row__image">
           <img
-            src="images/sketchplanations-the-curb-cut-effect-md.png"
-            alt="illustration demonstrating the universal benefits of the curb-cut effect"
+            src="images/designing-for-people-md.png"
+            alt="Conceptual image depicting a human mind integrated with mechanical gears, illustrating the importance of understanding human cognition when designing technology."
           />
         </div>
-        <div class="portfolio-text-column">
-          <h2>More about me</h2>
+        <div class="project-row__text">
+          <h3>Bridging Design and Development</h3>
           <p>
-            Bacon ipsum dolor amet landjaeger nostrud pariatur, ribeye aliqua
-            porchetta in nisi magna cupim cupidatat proident. Kevin pork belly
-            non, andouille bresaola fugiat pork chop sunt ut ex tempor corned
-            beef tri-tip consequat. Pork chop reprehenderit shoulder sausage
-            mollit et biltong occaecat turducken sint bacon. Short ribs alcatra
-            t-bone pork chop. Ground round ball tip shank, ut porchetta ea cow
-            enim pariatur fugiat pastrami. Pork culpa chicken andouille ullamco
-            tenderloin landjaeger pork chop ham hock cillum pig aliqua esse.
-            Chuck labore turducken, laborum venison in meatloaf aliqua
+            My unique background is complemented by a solid foundation in both
+            visual communication and front-end code. I independently designed
+            all promotional materials for my business, solidifying my **affinity
+            for graphic communication and design psychology**. This led me to
+            meticulously **audit materials for effectiveness, continuity, and
+            visual appeal**—a mindset that now guides my prototyping and
+            usability testing.
+          </p>
+          <p>
+            I am currently building a robust foundation through the **Google UX
+            Design Professional Certificate** and comprehensive studies at
+            **Tech Academy**. This dual approach ensures I not only understand
+            the *why* behind wireframing and prototyping but also possess the
+            technical skills to deliver clean, functional, and accessible
+            solutions (as demonstrated in my projects).
           </p>
         </div>
       </section>
 
       <!-- Row 4: Another example with placeholder content -->
-      <section class="portfolio-row reverse">
-        <div class="portfolio-image-column">
+      <section class="project-row reverse">
+        <div class="project-row__image">
           <img
-            src="https://via.placeholder.com/600x400/FFA07A/FFFFFF?text=Project+2+Image"
-            alt="Placeholder image for Project 2"
+            src="images/flying-steam-engine-md.png"
+            alt='A fantastical
+      steampunk flying train with prominent wings and smoking chimneys soars
+      through sunlit clouds above a detailed, elaborate cityscape at golden
+      hour, embodying "Curiosity is the engine of achievement."'
           />
         </div>
-        <div class="portfolio-text-column">
-          <h2>More about me</h2>
+        <div class="project-row__text">
+          <h3>Ready for the Next Challenge</h3>
           <p>
-            Bacon ipsum dolor amet landjaeger nostrud pariatur, ribeye aliqua
-            porchetta in nisi magna cupim cupidatat proident. Kevin pork belly
-            non, andouille bresaola fugiat pork chop sunt ut ex tempor corned
-            beef tri-tip consequat. Pork chop reprehenderit shoulder sausage
-            mollit et biltong occaecat turducken sint bacon. Short ribs alcatra
-            t-bone pork chop. Ground round ball tip shank, ut porchetta ea cow
-            enim pariatur fugiat pastrami. Pork culpa chicken andouille ullamco
-            tenderloin landjaeger pork chop ham hock cillum pig aliqua esse.
-            Chuck labore turducken, laborum venison in meatloaf aliqua
+            I am passionate about crafting seamless, intuitive, and delightful
+            digital products. Committed to staying at the forefront of
+            technological advancements, I'm particularly dedicated to
+            **leveraging AI to enhance research, accelerate skill development,
+            and streamline prototyping workflows**.
           </p>
           <p>
-            landjaeger ullamco culpa. Chuck sausage eiusmod culpa enim beef
-            tempor adipisicing ullamco porchetta shoulder dolore filet mignon.
-            Officia swine salami ipsum biltong picanha est. Pariatur ham hock
-            alcatra turkey. Landjaeger alcatra chislic shank lorem chuck jowl
-            pastrami laboris ea pancetta. Veniam pig ut excepteur cow, laboris
-            brisket jerky sed ad pastrami esse. Ground round cow turducken qui
-            ad fatback burgdoggen hamburger quis.
-          </p>
-        </div>
-      </section>
-      <!-- Row 5: Another example with placeholder content -->
-      <section class="portfolio-row">
-        <div class="portfolio-image-column">
-          <img
-            src="https://via.placeholder.com/600x400/FFA07A/FFFFFF?text=Project+2+Image"
-            alt="Placeholder image for Project 2"
-          />
-        </div>
-        <div class="portfolio-text-column">
-          <h2>More about me</h2>
-          <p>
-            Bacon ipsum dolor amet landjaeger nostrud pariatur, ribeye aliqua
-            porchetta in nisi magna cupim cupidatat proident. Kevin pork belly
-            non, andouille bresaola fugiat pork chop sunt ut ex tempor corned
-            beef tri-tip consequat. Pork chop reprehenderit shoulder sausage
-            mollit et biltong occaecat turducken sint bacon. Short ribs alcatra
-            t-bone pork chop. Ground round ball tip shank, ut porchetta ea cow
-            enim pariatur fugiat pastrami. Pork culpa chicken andouille ullamco
-            tenderloin landjaeger pork chop ham hock cillum pig aliqua esse.
-            Chuck labore turducken, laborum venison in meatloaf aliqua
-          </p>
-          <p>
-            landjaeger ullamco culpa. Chuck sausage eiusmod culpa enim beef
-            tempor adipisicing ullamco porchetta shoulder dolore filet mignon.
-            Officia swine salami ipsum biltong picanha est. Pariatur ham hock
-            alcatra turkey. Landjaeger alcatra chislic shank lorem chuck jowl
-            pastrami laboris ea pancetta. Veniam pig ut excepteur cow, laboris
-            brisket jerky sed ad pastrami esse. Ground round cow turducken qui
-            ad fatback burgdoggen hamburger quis.
+            I am actively seeking remote UX Designer opportunities where I can
+            apply my unique blend of human insight, design thinking, and
+            technical proficiency to create impactful digital solutions. **Let's
+            connect!**
           </p>
         </div>
       </section>
@@ -196,24 +178,74 @@
     <!-- FOOTER NAVBAR -->
     <footer>
       <nav class="navbar bottom" aria-label="Footer navigation">
-        <a class="active" href="#top"
-          ><i class="fa fa-fw fa-arrow-up"></i> Back to Top</a
+        <a href="#top" class="navbar__link"
+          ><i class="fa fa-fw fa-arrow-up"></i> Top</a
         >
-        <a href="./index.html"><i class="fa fa-fw fa-fort-awesome"></i> Home</a>
+        <a href="./index.html" class="navbar__link"
+          ><i class="fa fa-fw fa-fort-awesome"></i> Home</a
+        >
 
-        <a href="./projects.html"><i class="fa fa-fw fa-code"></i> Projects</a>
+        <a href="./projects.html" class="navbar__link"
+          ><i class="fa fa-fw fa-code"></i> Projects</a
+        >
         <a
-          href="https://github.com/the-tech-academy"
+          href="https://github.com/DVillers77"
           target="_blank"
           rel="noopener noreferrer"
+          class="navbar__link"
           ><i class="fa fa-fw fa-github"></i> GitHub</a
         >
-        <a href="./contact.html"
+        <a class="navbar__link--contact-trigger navbar__link" href="#"
           ><i class="fa fa-fw fa-hand-o-right"></i> Contact</a
         >
       </nav>
     </footer>
-    <!-- Link to the external JavaScript file -->
-    <script src="js/script.js" defer></script>
+    <!-- Contact Modal -->
+    <template id="contact-modal-template">
+      <div id="contact-modal" class="contact-modal">
+        <div class="contact-modal__content">
+          <button
+            type="button"
+            class="contact-modal__close-icon"
+            aria-label="Close contact form"
+          >
+            <i class="fa fa-close"></i>
+          </button>
+          <form
+            action="https://formspree.io/f/xovnjzlr"
+            method="POST"
+            class="contact-modal__form"
+          >
+            <h2>Contact Me</h2>
+            <label for="name"><b>Name</b></label>
+            <input
+              type="text"
+              placeholder="Enter your name"
+              name="name"
+              required
+            />
+
+            <label for="email"><b>Email</b></label>
+            <input
+              type="email"
+              placeholder="Enter your email"
+              name="email"
+              required
+            />
+
+            <label for="message"><b>Message</b></label>
+            <textarea
+              placeholder="Tell me about your project..."
+              name="message"
+              required
+            ></textarea>
+
+            <button type="submit" class="contact-modal__button--submit">
+              SEND MESSAGE
+            </button>
+          </form>
+        </div>
+      </div>
+    </template>
   </body>
 </html>

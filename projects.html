@@ -3,18 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Resource hints for faster loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
 
-    <!-- The actual stylesheet link for the font -->
     <link
       href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
       rel="stylesheet"
     />
 
-    <!-- ICON LIBRARY -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -22,18 +19,18 @@
 
     <link rel="stylesheet" href="css/stylesheet.css" />
 
-    <title>Dave's Portfolio</title>
+    <script src="js/script.js" defer></script>
+
+    <title>Projects | Dave's Portfolio</title>
   </head>
 
   <body id="top">
     <header>
-      <!--TOP NAVBAR -->
       <nav class="navbar" id="myNavbar" aria-label="Main navigation">
-        <!-- Hamburger button visible on mobile -->
         <a
           href="javascript:void(0);"
-          class="icon"
-          onclick="myFunction()"
+          class="navbar__toggle"
+          onclick="toggleMobileNav()"
           role="button"
           aria-label="Toggle navigation menu"
           aria-controls="nav-links-menu"
@@ -42,198 +39,394 @@
           <i class="fa fa-bars"></i>
         </a>
         <!-- Menu links container -->
-        <div class="nav-links">
-          <a href="./index.html"
+        <div class="navbar__links">
+          <a href="./index.html" class="navbar__link"
             ><i class="fa fa-fw fa-fort-awesome"></i> Home</a
           >
-          <a href="./about.html"><i class="fa fa-fw fa-heartbeat"></i> About</a>
-          <a class="active active-page-name" aria-current="page">
+          <a href="./about.html" class="navbar__link--bracket-left navbar__link"
+            ><i class="fa fa-fw fa-heartbeat"></i> About</a
+          >
+          <a class="active active-page-name navbar__link" aria-current="page">
             <i class="fa fa-fw fa-code"></i> Projects</a
           >
           <a
-            href="https://github.com/the-tech-academy"
+            href="https://github.com/DVillers77"
             target="_blank"
             rel="noopener noreferrer"
+            class="navbar__link--bracket-right navbar__link"
             ><i class="fa fa-fw fa-github"></i> GitHub</a
           >
-          <a href="./contact.html"
+          <a class="navbar__link--contact-trigger navbar__link" href="#"
             ><i class="fa fa-fw fa-hand-o-right"></i> Contact</a
           >
         </div>
       </nav>
     </header>
 
-    <!-- MAIN PORTFOLIO CONTENT -->
-    <main class="portfolio-container">
+    <main class="project-container">
+      <section id="slideshow-container" class="project-row">
+        <div
+          class="slideshow"
+          role="region"
+          aria-roledescription="Project Carousel"
+          aria-label="Project Slideshow"
+        >
+          <div id="slide-announcer" aria-live="polite" class="sr-only"></div>
+
+          <div
+            class="slideshow__slide"
+            data-title="Modern Tic-Tac-Toe Game"
+            role="group"
+            aria-label="Slide 1 of 2: Modern Tic-Tac-Toe Game"
+          >
+            <img
+              src="images/modern-tic-tac-toe-500h.jpg"
+              class="slideshow__image"
+              data-target="#tic-tac-toe-details"
+              alt="Screenshot of modern Tic-Tac-Toe game"
+            />
+          </div>
+
+          <div
+            class="slideshow__slide"
+            data-title="Interactive To-Do App"
+            role="group"
+            aria-label="Slide 2 of 2: Interactive To-Do App"
+          >
+            <img
+              src="images/to-do-app-500h.jpg"
+              class="slideshow__image"
+              data-target="#to-do-app-details"
+              alt="Screenshot of Task Master to-do app version 1."
+            />
+          </div>
+
+          <a
+            class="slideshow__control--prev"
+            id="prev-slide"
+            role="button"
+            aria-controls="slideshow-container"
+            >&#10094;</a
+          >
+          <a
+            class="slideshow__control--next"
+            id="next-slide"
+            role="button"
+            aria-controls="slideshow-container"
+            >&#10095;</a
+          >
+        </div>
+        <div class="slideshow-title-box">
+          <a id="slide-title-link" href="#">
+            <h3 id="slide-title">Project Title Placeholder</h3>
+          </a>
+        </div>
+        <div class="slideshow__dots">
+          <span class="slideshow__dot" data-slide-index="1"></span>
+          <span class="slideshow__dot" data-slide-index="2"></span>
+        </div>
+      </section>
+      <!-- MAIN PORTFOLIO ZIGZAG CONTENT -->
       <!-- ROW 1 (Image Left, Text Right) -->
-      <section class="portfolio-row">
-        <div class="portfolio-image-column">
+      <section class="project-row first-project-row">
+        <div class="project-row__image">
           <img
             src="images/dain-miller-sadle-reigns-quote-md.png"
             alt="A conceptual digital illustration depicting a silhouetted figure confidently riding a glowing wireframe horse, its form made of digital elements and geometric, luminous UI-like saddle, stirrups, and reins. The overall scene is enveloped in a radiant, swirling aura of abstract colors, symbolizing the positive user experience (UX) derived from intuitive user interface (UI). This imagery visually represents Dain Miller's quote: 'UI is the saddle, the stirrups, & the reins. UX is the feeling you get from being able to ride the horse'."
           />
         </div>
-        <div class="portfolio-text-column">
-          <h1>David Villers' Projects</h1>
+        <div class="project-row__text">
+          <h1>Projects: UX-Driven Design Backed by Technical Proficiency</h1>
           <p>
-            Here are some of the projects I have worked on while learning to
-            code. For a more indepth view of my projects please use the GitHub
-            link in the above navbar.
+            Welcome to my project showcase! These applications demonstrate my
+            commitment to **user-centric design** and rigorous **Accessibility
+            (A11y)** standards. I build intuitive, inclusive experiences that
+            solve real-world problems.
+          </p>
+          <p>
+            You'll find concrete examples of this philosophy in the **persistent
+            Dark Mode** and **Undo functionality** (TaskMaster) and a focus on
+            **keyboard control** and clean, themeable design (CSS Custom
+            Properties).
+          </p>
+          <p>
+            My added value lies in executing these designs with robust
+            engineering: projects showcase advanced JavaScript concepts like the
+            **Minimax AI algorithm** for complex logic, efficient state
+            management, and the use of **WAI-ARIA** for a stable, accessible
+            application core.
+          </p>
+          <p>
+            Explore the live demos below to interact with the applications, and
+            view the well-structured code on GitHub to see my full development
+            methodology.
           </p>
         </div>
       </section>
-
       <!-- ROW 2 (Image Right, Text Left) -->
-      <section class="portfolio-row reverse">
-        <div class="portfolio-image-column">
+      <section
+        id="tic-tac-toe-details"
+        class="project-row reverse"
+        tabindex="-1"
+      >
+        <div class="project-row__image">
           <img
-            src="images/flying-steam-engine-md.png"
-            alt="illustration of a flying steam engine"
+            src="images/modern-tic-tac-toe-500h.jpg"
+            alt="Screenshot of modern Tic-Tac-Toe game"
           />
         </div>
-        <div class="portfolio-text-column">
-          <h2>Project 1: Responsive Website Development</h2>
+        <div class="project-row__text">
+          <h2>Modernized Tic-Tac-Toe: AI Logic</h2>
           <p>
-            Bacon ipsum dolor amet landjaeger nostrud pariatur, ribeye aliqua
-            porchetta in nisi magna cupim cupidatat proident. Kevin pork belly
-            non, andouille bresaola fugiat pork chop sunt ut ex tempor corned
-            beef tri-tip consequat. Pork chop reprehenderit shoulder sausage
-            mollit et biltong occaecat turducken sint bacon. Short ribs alcatra
-            t-bone pork chop. Ground round ball tip shank, ut porchetta ea cow
-            enim pariatur fugiat pastrami. Pork culpa chicken andouille ullamco
-            tenderloin landjaeger pork chop ham hock cillum pig aliqua esse.
-            Chuck labore turducken, laborum venison in meatloaf aliqua
+            This project showcases my ability to implement complex algorithms
+            and manage game state in a responsive, high-contrast environment. It
+            successfully transforms a simple game into a demonstration of
+            computational logic.
           </p>
+
+          <blockquote>
+            **Technical Highlight:** The "Hard" difficulty level is driven by
+            the **Minimax AI algorithm**, a core recursive concept in game
+            theory, resulting in an unbeatable computer opponent. Game state is
+            efficiently managed via a simple array.
+            <figcaption>Implementation of the Minimax Algorithm</figcaption>
+          </blockquote>
+
           <p>
-            landjaeger ullamco culpa. Chuck sausage eiusmod culpa enim beef
-            tempor adipisicing ullamco porchetta shoulder dolore filet mignon.
-            Officia swine salami ipsum biltong picanha est. Pariatur ham hock
-            alcatra turkey. Landjaeger alcatra chislic shank lorem chuck jowl
-            pastrami laboris ea pancetta. Veniam pig ut excepteur cow, laboris
-            brisket jerky sed ad pastrami esse. Ground round cow turducken qui
-            ad fatback burgdoggen hamburger quis.
+            The game also features persistent score tracking using
+            **localStorage** across browser sessions and includes smooth visual
+            feedback, like the animated win line, implemented using the
+            performance-friendly `requestAnimationFrame`.
           </p>
+          <div class="button-group">
+            <a
+              href="[INSERT TIC-TAC-TOE LIVE DEMO URL HERE]"
+              target="_blank"
+              class="button button--primary"
+              >LIVE DEMO</a
+            >
+            <a
+              href="[INSERT TIC-TAC-TOE GITHUB URL HERE]"
+              target="_blank"
+              class="button button--secondary"
+              >VIEW CODE</a
+            >
+          </div>
         </div>
       </section>
-
-      <!-- Row 3: (Image Left, Text Right) -->
-      <section class="portfolio-row">
-        <div class="portfolio-image-column">
+      <!-- ROW 3 (Text Right, Image Left) -->
+      <section id="to-do-app-details" class="project-row" tabindex="-1">
+        <div class="project-row__image">
           <img
-            src="images/designing-for-people-md.png"
-            alt="Conceptual image depicting a human mind integrated with mechanical gears, illustrating the importance of understanding human cognition when designing technology."
+            src="images/to-do-app-500h.jpg"
+            alt="Screenshot of Task Master to-do app version 1."
           />
         </div>
-        <div class="portfolio-text-column">
-          <h2>Project 2: Responsive Website Development</h2>
+        <div class="project-row__text">
+          <h2>TaskMaster: Accessible To-Do App</h2>
           <p>
-            Bacon ipsum dolor amet landjaeger nostrud pariatur, ribeye aliqua
-            porchetta in nisi magna cupim cupidatat proident. Kevin pork belly
-            non, andouille bresaola fugiat pork chop sunt ut ex tempor corned
-            beef tri-tip consequat. Pork chop reprehenderit shoulder sausage
-            mollit et biltong occaecat turducken sint bacon. Short ribs alcatra
-            t-bone pork chop. Ground round ball tip shank, ut porchetta ea cow
-            enim pariatur fugiat pastrami. Pork culpa chicken andouille ullamco
-            tenderloin landjaeger pork chop ham hock cillum pig aliqua esse.
-            Chuck labore turducken, laborum venison in meatloaf aliqua
+            This application was built to demonstrate proficiency in
+            **user-centric design** and **application state management**. My
+            primary focus was on creating a fluid, accessible experience that
+            maintains data integrity.
           </p>
+
+          <blockquote>
+            **Key UX/A11y Features:** Includes persistent **Light/Dark Mode**
+            settings and a crucial **Undo functionality** to prevent data loss.
+            The entire app is keyboard-controllable, meeting **A11y standards**
+            by utilizing `aria-label` attributes and the Enter key for
+            submission.
+            <figcaption>UX driven, fully accessible application</figcaption>
+          </blockquote>
+
           <p>
-            landjaeger ullamco culpa. Chuck sausage eiusmod culpa enim beef
-            tempor adipisicing ullamco porchetta shoulder dolore filet mignon.
-            Officia swine salami ipsum biltong picanha est. Pariatur ham hock
-            alcatra turkey. Landjaeger alcatra chislic shank lorem chuck jowl
-            pastrami laboris ea pancetta. Veniam pig ut excepteur cow, laboris
-            brisket jerky sed ad pastrami esse. Ground round cow turducken qui
-            ad fatback burgdoggen hamburger quis.
+            The technical foundation relies on **Vanilla JavaScript** to manage
+            core CRUD (Create, Read, Update, Delete) operations and efficiently
+            handle data persistence using **localStorage**. The UI uses **CSS
+            Custom Properties** for quick, maintainable theme switching.
           </p>
+          <div class="button-group">
+            <a
+              href="[INSERT TASKMASTER LIVE DEMO URL HERE]"
+              target="_blank"
+              class="button button--primary"
+              >LIVE DEMO</a
+            >
+            <a
+              href="[INSERT TASKMASTER GITHUB URL HERE]"
+              target="_blank"
+              class="button button--secondary"
+              >VIEW CODE</a
+            >
+          </div>
         </div>
       </section>
-
-      <!-- Row 4: (Image Right, Text Left) -->
-      <section class="portfolio-row reverse">
-        <div class="portfolio-image-column">
+      <!-- ROW 4 (Image Right, Text Left) -->
+      <section class="project-row reverse">
+        <div class="project-row__image">
           <img
-            src="https://via.placeholder.com/600x400/FFA07A/FFFFFF?text=Project+2+Image"
+            src="images/portfolio-screenshot-01.jpg"
             alt="Placeholder image for Project 3"
           />
         </div>
-        <div class="portfolio-text-column">
-          <h2>Project 3: Responsive Website Development</h2>
+        <div class="project-row__text">
+          <h2>Portfolio: A Meta-Project in Front-End Architecture</h2>
           <p>
-            Bacon ipsum dolor amet landjaeger nostrud pariatur, ribeye aliqua
-            porchetta in nisi magna cupim cupidatat proident. Kevin pork belly
-            non, andouille bresaola fugiat pork chop sunt ut ex tempor corned
-            beef tri-tip consequat. Pork chop reprehenderit shoulder sausage
-            mollit et biltong occaecat turducken sint bacon. Short ribs alcatra
-            t-bone pork chop. Ground round ball tip shank, ut porchetta ea cow
-            enim pariatur fugiat pastrami. Pork culpa chicken andouille ullamco
-            tenderloin landjaeger pork chop ham hock cillum pig aliqua esse.
-            Chuck labore turducken, laborum venison in meatloaf aliqua
+            This portfolio is a live demonstration of my ability to design and
+            build a **robust, production-ready web application** from the ground
+            up. It serves as the ultimate showcase of my front-end methodology
+            and organizational standards.
           </p>
+
+          <blockquote>
+            **Architectural Highlights:** Structured using the **BEM
+            methodology** for clean component naming and the **Single
+            Responsibility Principle (SRP)**. The entire site uses **CSS Custom
+            Properties (Variables)** for centralized, maintainable themes and
+            styles.
+            <figcaption>
+              Modular, scalable, and fully documented codebase.
+            </figcaption>
+          </blockquote>
+
           <p>
-            landjaeger ullamco culpa. Chuck sausage eiusmod culpa enim beef
-            tempor adipisicing ullamco porchetta shoulder dolore filet mignon.
-            Officia swine salami ipsum biltong picanha est. Pariatur ham hock
-            alcatra turkey. Landjaeger alcatra chislic shank lorem chuck jowl
-            pastrami laboris ea pancetta. Veniam pig ut excepteur cow, laboris
-            brisket jerky sed ad pastrami esse. Ground round cow turducken qui
-            ad fatback burgdoggen hamburger quis.
+            The core JavaScript logic features a custom, highly accessible
+            Contact Modal with a full **Focus Trap** implementation, ensuring
+            compliance with **WAI-ARIA standards** for screen readers and
+            keyboard users. Performance is maintained through **DRY (Don't
+            Repeat Yourself)** principles, including conditional script loading.
           </p>
+          <div class="button-group">
+            <a
+              href="[INSERT PORTFOLIO GITHUB URL HERE]"
+              target="_blank"
+              class="button button--secondary"
+              >VIEW CODE</a
+            >
+          </div>
         </div>
       </section>
-      <!-- Row 5: (Image Left, Text Right) -->
-      <section class="portfolio-row">
-        <div class="portfolio-image-column">
+      <!-- ROW 5 (Text Right, Image Left) -->
+      <section class="project-row">
+        <div class="project-row__image">
           <img
-            src="https://via.placeholder.com/600x400/FFA07A/FFFFFF?text=Project+2+Image"
+            src="images/api-fun-center.jpg"
             alt="Placeholder image for Project 4"
           />
         </div>
-        <div class="portfolio-text-column">
-          <h2>Project 4: Responsive Website Development</h2>
+        <div class="project-row__text">
+          <h2>API Fun Center: External Data Integration</h2>
           <p>
-            Bacon ipsum dolor amet landjaeger nostrud pariatur, ribeye aliqua
-            porchetta in nisi magna cupim cupidatat proident. Kevin pork belly
-            non, andouille bresaola fugiat pork chop sunt ut ex tempor corned
-            beef tri-tip consequat. Pork chop reprehenderit shoulder sausage
-            mollit et biltong occaecat turducken sint bacon. Short ribs alcatra
-            t-bone pork chop. Ground round ball tip shank, ut porchetta ea cow
-            enim pariatur fugiat pastrami. Pork culpa chicken andouille ullamco
-            tenderloin landjaeger pork chop ham hock cillum pig aliqua esse.
-            Chuck labore turducken, laborum venison in meatloaf aliqua
+            This project serves as a focused demonstration of **Asynchronous
+            JavaScript** and my ability to successfully integrate with multiple
+            third-party APIs across various domains (data, images, and
+            translation services).
           </p>
+
+          <blockquote>
+            **Core Technical Skill:** The application uses the modern **`fetch`
+            API** to handle all external requests. It includes proper promise
+            chaining (`.then()`) for sequential data handling and robust **error
+            handling** (`.catch()`) for unstable API services.
+            <figcaption>
+              Proof of proficiency in Asynchronous JavaScript
+            </figcaption>
+          </blockquote>
+
           <p>
-            landjaeger ullamco culpa. Chuck sausage eiusmod culpa enim beef
-            tempor adipisicing ullamco porchetta shoulder dolore filet mignon.
-            Officia swine salami ipsum biltong picanha est. Pariatur ham hock
-            alcatra turkey. Landjaeger alcatra chislic shank lorem chuck jowl
-            pastrami laboris ea pancetta. Veniam pig ut excepteur cow, laboris
-            brisket jerky sed ad pastrami esse. Ground round cow turducken qui
-            ad fatback burgdoggen hamburger quis.
+            The inclusion of the Yoda Translator demonstrates how to properly
+            **encode user input (`encodeURIComponent`)** before transmitting
+            data via a URL, which is a critical security and functionality
+            requirement for interacting with live servers.
           </p>
+          <div class="button-group">
+            <a
+              href="[INSERT API FUN CENTER LIVE DEMO URL HERE]"
+              target="_blank"
+              class="button button--primary"
+              >LIVE DEMO</a
+            >
+            <a
+              href="[INSERT API FUN CENTER GITHUB URL HERE]"
+              target="_blank"
+              class="button button--secondary"
+              >VIEW CODE</a
+            >
+          </div>
         </div>
       </section>
     </main>
     <!-- FOOTER NAVBAR -->
     <footer>
       <nav class="navbar bottom" aria-label="Footer navigation">
-        <a class="active" href="#top"
-          ><i class="fa fa-fw fa-arrow-up"></i> Back to Top</a
+        <a href="#top" class="navbar__link"
+          ><i class="fa fa-fw fa-arrow-up"></i> Top</a
         >
-        <a href="./index.html"><i class="fa fa-fw fa-fort-awesome"></i> Home</a>
-        <a href="./about.html"><i class="fa fa-fw fa-heartbeat"></i> About</a>
+        <a href="./index.html" class="navbar__link"
+          ><i class="fa fa-fw fa-fort-awesome"></i> Home</a
+        >
+        <a href="./about.html" class="navbar__link"
+          ><i class="fa fa-fw fa-heartbeat"></i> About</a
+        >
         <a
-          href="https://github.com/the-tech-academy"
+          href="https://github.com/DVillers77"
           target="_blank"
           rel="noopener noreferrer"
+          class="navbar__link"
           ><i class="fa fa-fw fa-github"></i> GitHub</a
         >
-        <a href="./contact.html"
+        <a class="navbar__link--contact-trigger navbar__link" href="#"
           ><i class="fa fa-fw fa-hand-o-right"></i> Contact</a
         >
       </nav>
     </footer>
-    <!-- Link to the external JavaScript file -->
-    <script src="js/script.js" defer></script>
+    <!-- Contact Modal -->
+    <template id="contact-modal-template">
+      <div id="contact-modal" class="contact-modal">
+        <div class="contact-modal__content">
+          <button
+            type="button"
+            class="contact-modal__close-icon"
+            aria-label="Close contact form"
+          >
+            <i class="fa fa-close"></i>
+          </button>
+          <form
+            action="https://formspree.io/f/xovnjzlr"
+            method="POST"
+            class="contact-modal__form"
+          >
+            <h2>Contact Me</h2>
+            <label for="name"><b>Name</b></label>
+            <input
+              type="text"
+              placeholder="Enter your name"
+              name="name"
+              required
+            />
+
+            <label for="email"><b>Email</b></label>
+            <input
+              type="email"
+              placeholder="Enter your email"
+              name="email"
+              required
+            />
+
+            <label for="message"><b>Message</b></label>
+            <textarea
+              placeholder="Tell me about your project..."
+              name="message"
+              required
+            ></textarea>
+
+            <button type="submit" class="contact-modal__button--submit">
+              SEND MESSAGE
+            </button>
+          </form>
+        </div>
+      </div>
+    </template>
   </body>
 </html>

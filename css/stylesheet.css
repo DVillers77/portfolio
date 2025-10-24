@@ -1,282 +1,771 @@
-/* Main container for spacing */
-.portfolio-container {
-  max-width: 75rem; /* 1200px / 16px */
-  margin: 0 auto;
-}
-
-/* Base style for all portfolio rows */
-.portfolio-row {
-  display: flex; /* Enables flexbox layout for the row */
-  align-items: center; /* Vertically aligns content in the center */
-  padding: 3.75rem 1.25rem; /* 60px / 16px and 20px / 16px */
-}
-
-/* Alternating rows: change direction of content */
-.portfolio-row.reverse {
-  flex-direction: row-reverse;
-}
-
-/* Apply a background color to every odd-numbered row */
-.portfolio-row:nth-of-type(odd) {
-  background-color: #f0fff4; /* A very light gray */
-}
-
-/* Apply a different background color to every even-numbered row */
-.portfolio-row:nth-of-type(even) {
-  background-color: #ffffff; /* White background */
-}
-
-/* Base style for content columns */
-
-/* Image styling */
-.portfolio-image-column {
-  flex: 1; /* Both columns share the available space equally */
-  max-width: 50%; /* Max width for each column on larger screens */
-  display: flex;
-  align-content: center;
-  justify-content: center;
-}
-
-.portfolio-image-column img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 0.5rem; /* 8px / 16px */
-  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2); /* 4px / 16px and 8px / 16px */
-}
-
-/* Text column styling */
-.portfolio-text-column {
-  flex: 1;
-  max-width: 50%;
-  display: flex; /* Make the column a flex container */
-  flex-direction: column;
-  justify-content: center; /* Center the flex item (the figure) horizontally */
-  align-items: center; /* Center the flex item (the figure) vertically */
-  padding: 1.25rem; /* 20px / 16px */
-}
-
-.portfolio-text-column h1,
-h2 {
-  margin-bottom: 1rem;
-  text-align: center;
-  max-width: 26ch;
-}
-
-.portfolio-text-column p {
-  font-size: 1.125rem;
-  line-height: 1.5;
-  max-width: 45ch;
-}
-
-/* Styles for the figure, blockquote, and figcaption */
-.portfolio-text-column figure {
-  margin: 0 auto;
-  width: fit-content;
-}
-
-.portfolio-text-column blockquote {
-  font-style: italic;
-  font-size: 1.25em; /* Em is used here to scale relative to the `<blockquote>`'s `font-size` */
-  color: #333333;
-  border-left: solid 0.1rem #ff00ff;
-  padding: 0.5rem;
-}
-
-.portfolio-text-column figcaption {
-  font-size: 1em; /* Scales relative to the `<blockquote>` font size for proximity */
-  text-align: right;
-  color: #3cb371;
-  margin-top: 0.5em;
-}
-
-/* === Navbar and Base Styles === */
-
-/* Sets base font size and allows rem units to scale relative to user preferences */
+/* ================================================= */
+/* === 1. GLOBAL COLOR PALETTE & EFFECTS (CSS Variables) === */
+/* ================================================= */
 :root {
+  /* PRIMARY COLORS */
+  --color-primary-green: #3cb371; /* Medium Sea Green (Main accent/Success color) */
+  --color-link-accent: #007bff; /* Standard Link Blue (Used for slideshow link hover) */
+  --color-accent-violet: #ff00ff; /* Fuchsia/Violet (The main brand accent color) */
+  --color-button-success: #4caf50; /* Contact modal submit button background */
+
+  /* BACKGROUNDS & NEUTRALS */
+  --color-background-lightest: #f0fff4; /* Lightest Background/Active State (E.g., odd rows, active nav link) */
+  --color-neutral-white: #ffffff; /* Pure White (E.g., even rows, modal background) */
+  --color-text-dark: #333333; /* Dark Gray (Main body text, Navbar background) */
+  --color-text-black: #0a0a0a; /* Near Black */
+  --color-border-light: #ccc; /* Light Gray for form borders */
+  --color-border-medium: #888; /* Medium Gray for modal border */
+
+  /* OVERLAYS & TRANSPARENT COLORS */
+
+  /* New Medium Overlay (0.5 opacity) - For default states */
+  --color-overlay-medium: rgba(0, 0, 0, 0.5);
+
+  /* New Dark Overlay (0.8 opacity) - For hover, focus, or high-contrast backdrops */
+  --color-overlay-dark: rgba(0, 0, 0, 0.8);
+
+  /* Low-opacity variant of primary green used for seamless nav bracket hover blending */
+  --color-primary-green-low-opacity: rgba(60, 179, 113, 0.1);
+
+  /* SHADOWS & EFFECTS */
+  --shadow-subtle: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2); /* General purpose soft shadow for depth */
+  --shadow-form-focus-inset: 0 0 0.3125rem var(--color-primary-green) inset; /* Green inset glow for form focus */
+  --shadow-form: 0 0 0.25rem var(--color-primary-green); /* Green glow for forms */
+  --shadow-navbar-top-inset: 0 -0.75rem 0.75rem -0.85rem
+    var(--color-accent-violet) inset; /* Violet inset shadow at the top of the navbar */
+  --shadow-navbar-bottom-inset: 0 0.75rem 0.75rem -0.85rem var(
+      --color-accent-violet
+    ) inset; /* Violet inset shadow at the bottom of the navbar */
+  --shadow-modal: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19); /* Standard modal window shadow */
+
+  /* VIOLET GLOW VARIABLES (Semantic replacements for hardcoded rgba box-shadows) */
+  --shadow-violet-glow-strong: 0 0 10px 0 rgba(255, 0, 255, 0.6); /* Stronger violet glow for interactive elements (hover state) */
+  --shadow-violet-glow-strong-inset: inset 0 0 10px 0 rgba(255, 0, 255, 0.6); /* Stronger violet inset glow for buttons/nav hover */
+  --shadow-violet-glow-subtle: 0 0 10px 0 rgba(255, 0, 255, 0.4); /* Subtle violet glow for images/forms (general style) */
+  --shadow-violet-glow-subtle-inset: inset 0 0 5px 0 rgba(255, 0, 255, 0.2); /* NEW: Very subtle violet inset glow for blockquotes/less prominent elements */
+}
+
+/* ================================================= */
+/* === 2. BASE STYLES & TYPOGRAPHY === */
+/* ================================================= */
+
+:root {
+  /* Establishes 1rem = 16px */
   font-size: 100%;
 }
 
 body {
   font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: var(--color-text-dark);
 }
 
-p {
-  font-family: "Lora", serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
+html {
+  scroll-behavior: smooth;
 }
 
-p + p {
-  margin-top: 1em; /* Scales with the font size of the p tag */
-}
-
-/* Also apply it to the blockquotes for consistency in the zig-zag layout */
-blockquote {
-  font-family: "Lora", serif;
-  font-weight: 500;
-  font-style: normal;
-}
-
-/* Make sure your h2 and navbar still use the sans-serif font */
-.navbar,
+/* Ensure headings use the absolute darkest color for strong contrast/emphasis */
 h1,
-h2 {
-  font-family: Arial, Helvetica, sans-serif;
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(
+    --color-text-black
+  ); /* Jet Black: Overrides the inherited Dark Gray */
 }
 
-.navbar {
-  width: 100%;
-  background-color: #333333;
-  overflow: auto;
-  box-shadow: 0 -0.75rem 0.75rem -0.85rem #ff00ff inset;
-  z-index: 1000;
-}
-
-/* --- Bottom Navbar Styling (Overrides and additions for .bottom class) --- */
-.navbar.bottom {
-  width: 100%;
-  display: flex; /* Flexbox for centering */
-  justify-content: center; /* Center the links */
-  box-shadow: 0 0.75rem 0.75rem -0.85rem #ff00ff inset;
-}
-
-/* Override the floating behavior for links inside the bottom navbar */
-.navbar.bottom a {
-  float: none;
-}
-.navbar a {
-  float: right;
-  padding: 1rem;
-  color: white;
-  text-decoration: none;
-  font-size: 1.125rem; /* 18px / 16px */
-}
-
-.navbar a:hover {
-  background-color: #3cb371;
-  color: #0a0a0a;
-}
-
-/* Specific styles for the active link that override the hover effect */
-.navbar a.active {
-  background-color: #f0fff4; /* Use the desired background color */
-  color: #0a0a0a;
-  float: right;
-}
-
-/* Explicitly prevent the active link's background from changing on hover */
-.navbar a.active:hover {
-  background-color: #f0fff4;
-  cursor: default; /* Change cursor to indicate no action */
-}
-
-.navbar.bottom a.active:hover {
-  background-color: #3cb371;
-  cursor: pointer;
-}
-
+/* Global reset for box-model and spacing */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/***** CONTACT FORM STYLING (!!!needs retooling!!!)*****/
-
-/* input boxes -message */
-input[type="text"] {
-  width: 100%; /* Each input box covers the full width of the container */
-  padding: 0.75rem; /* 12px / 16px / Adds padding within the text box */
-  border: 1px solid #ccc; /* Setting a solid border and its color */
-  border-radius: 0.25rem; /*  4px / 16px / Slightly rounds the corners of the text box border */
-  box-sizing: border-box; /* This creates a box with a border around the contact form input boxes */
-  margin-top: 0.375rem; /* 6px / 16px / Adds a margin to the top of the text box */
-  margin-bottom: 1rem; /* 16px / 16px / Adds a margin to the bottom of the text box */
-  resize: vertical; /* This allows the user to resize the text boxes vertically */
+p {
+  font-family: "Lora", serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
-/* Hover effects for input boxes */
-input[type="text"]:hover,
-textarea:hover {
-  box-shadow: 0 0 0.3125rem #3cb371 inset; /* 5px / 16px / This creates a blue shadow in the text box when hovered over by the user */
+/* Adds vertical space between successive paragraph or heading elements */
+p + p,
+p + h2,
+p + h3,
+h3 + p,
+h2 + p,
+h1 + p {
+  margin-top: 1em;
 }
 
-/* Message box effects */
+/* Consistent sans-serif font for navigation and headings */
+.navbar,
+h1,
+h2,
+h3 {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ================================================= */
+/* === 3. NAVBAR STYLING (Top and Bottom) === */
+/* ================================================= */
+
+/* --- New Spacer Styles --- */
+.navbar__links .navbar__spacer-right {
+  /* Gives the spacer the same dimensions as a link item but keeps it visually hidden */
+  padding: 1rem;
+  color: transparent;
+  font-size: 1.125rem;
+  position: relative;
+  z-index: 1001;
+}
+
+.navbar {
+  width: 100%;
+  background-color: var(
+    --color-text-dark
+  ); /* Dark background for navigation bar */
+  overflow: auto;
+  box-shadow: var(
+    --shadow-navbar-top-inset
+  ); /* Violet inset shadow for top edge style */
+  z-index: 1000; /* Ensures the navbar sits above page content */
+
+  /* Use Flexbox for cleaner desktop positioning */
+  display: flex;
+  justify-content: flex-end; /* Pushes the main menu links to the right on desktop */
+}
+
+.navbar__link {
+  padding: 1rem;
+  color: var(--color-neutral-white);
+  text-decoration: none;
+  font-size: 1.125rem;
+  /* CRITICAL: Establishes a stacking context and layer (z-index 1001) for the link
+     to sit above its own pseudo-elements (z-index 1000), enabling the inverted corner hover effect. */
+  position: relative;
+  z-index: 1001;
+}
+
+.navbar__link:hover {
+  background-color: var(--color-primary-green);
+  color: var(--color-text-black);
+  /* Violet inset glow for interactive feedback on hover */
+  box-shadow: var(--shadow-violet-glow-strong-inset);
+}
+
+.navbar__link.active:hover {
+  background-color: var(--color-background-lightest);
+  cursor: default;
+  /* Active link hover is a passive state, so shadows are removed */
+  box-shadow: none;
+}
+
+/* --- Bottom Navbar Styling --- */
+.navbar.bottom {
+  display: flex;
+  justify-content: center; /* Centers links for the footer */
+  box-shadow: var(
+    --shadow-navbar-bottom-inset
+  ); /* Violet inset shadow for bottom edge style */
+}
+
+.navbar.bottom .navbar__link {
+  float: none;
+}
+
+/* Applies the violet glow to the back-to-top button hover state (only in the bottom nav) */
+.navbar.bottom .navbar__link.active:hover {
+  background-color: var(--color-primary-green);
+  cursor: pointer;
+  box-shadow: var(--shadow-violet-glow-strong-inset);
+}
+
+/* Style for the currently active link in the TOP navbar only */
+.navbar:not(.bottom) .navbar__link.active {
+  background-color: var(
+    --color-background-lightest
+  ); /* Light background to visually separate */
+  color: var(--color-text-black);
+
+  /* Sets the approved 6px top radius */
+  border-radius: 6px 6px 0 0;
+  position: relative;
+  z-index: 2; /* Ensures it sits above any other elements in the stack */
+
+  /* Ensure the bottom edge is perfectly square to sit atop the dark navbar */
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* ================================================= */
+/* === 3.1. INVERTED BORDER RADIUS FIX (Quarter Circle Overlay) === */
+/* ================================================= */
+
+/* --- LEFT SIDE (Active link on the far left, like Home) --- */
+/* Target the spacer to place the inverted corner next to the link */
+.navbar__spacer-right::after {
+  content: " ";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 0 0 100vw 0;
+
+  bottom: -10px;
+  right: 0px;
+
+  background-color: var(--color-text-dark);
+  box-shadow: 5px 5px 0 5px var(--color-background-lightest);
+
+  z-index: 1000;
+}
+
+/* The spacer's pseudo-element should only appear if the link NEXT to it is active */
+.navbar__spacer-right + .navbar__link--bracket-right.active::after {
+  /* This rule is now REQUIRED to activate the spacer's pseudo-element only for the Home page */
+  box-shadow: 5px 5px 0 5px var(--color-background-lightest);
+  /* The color is set by the active link's background, which is .navbar a.active */
+}
+
+/* Style the Link to the LEFT of the active tab (e.g., "About" for "Projects") */
+.navbar .navbar__link--bracket-left.navbar__link::after {
+  content: " ";
+  position: absolute;
+  /* Shape size matches padding/font metrics for best visual fit */
+  width: 16px;
+  height: 16px;
+  /* Creates the inverted top-right corner radius (quarter circle cutout) */
+  border-radius: 0 0 100vw 0;
+
+  /* Positioned precisely at the bottom-right corner of the link */
+  bottom: 0px;
+  right: 0px;
+
+  /* The element itself is the dark nav color (to cover the dark nav bar) */
+  background-color: var(--color-text-dark);
+
+  /* The box-shadow is the light active background color, creating the 'cut-out' illusion */
+  box-shadow: 5px 5px 0 5px var(--color-background-lightest);
+
+  z-index: 1000; /* Sits below the link's text/content (z-index 1001), but above the main dark nav bar */
+}
+
+/* FIX: Seamless Hover Transition for Left Bracket */
+.navbar .navbar__link.navbar__link--bracket-left:hover::after {
+  /* Background uses low opacity green to create a subtle blend over the adjacent light active link corner. 
+     This resolves the light corner "leak" issue during the hover transition. */
+  background-color: var(--color-primary-green-low-opacity);
+
+  /* Box-shadow remains the light color to maintain the illusion of the cut-out corner. */
+  box-shadow: 5px 5px 0 5px var(--color-background-lightest);
+}
+
+/* Style the Link to the RIGHT of the active tab (e.g., "GitHub" for "Projects") */
+.navbar .navbar__link--bracket-right.navbar__link::after {
+  content: " ";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  /* Creates the inverted top-left corner radius (quarter circle cutout) */
+  border-radius: 0 0 0 100vw;
+
+  /* Positioned precisely at the bottom-left corner of the link */
+  bottom: 0px;
+  left: 0px;
+
+  /* The element itself is the dark nav color (to cover the dark nav bar) */
+  background-color: var(--color-text-dark);
+
+  /* The box-shadow is the light active background color, creating the 'cut-out' illusion */
+  box-shadow: -5px 5px 0 5px var(--color-background-lightest);
+
+  z-index: 1000;
+}
+
+/* FIX: Seamless Hover Transition for Right Bracket */
+.navbar .navbar__link.navbar__link--bracket-right:hover::after {
+  /* Background uses low opacity green to create a subtle blend over the adjacent light active link corner. */
+  background-color: var(--color-primary-green-low-opacity);
+
+  /* Box-shadow remains the light color to maintain the illusion of the cut-out corner. */
+  box-shadow: -5px 5px 0 5px var(--color-background-lightest);
+}
+/* ================================================= */
+/* === 4. HERO PITCH STYLING === */
+/* ================================================= */
+
+.hero-pitch {
+  display: flex;
+  justify-content: center;
+  padding: 3.75rem 1.25rem;
+  background-color: var(--color-background-lightest);
+}
+
+.hero-pitch__text {
+  text-align: center;
+  margin: 1.5rem;
+  max-width: 50rem;
+}
+
+.hero-pitch__text h1 {
+  margin-bottom: 1rem;
+}
+
+/* ================================================= */
+/* === 5. BUTTON STYLING (Used on Home/Projects) === */
+/* ================================================= */
+
+/* Block: Defines the base style for ALL buttons */
+.button {
+  /* Basic button look */
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  margin: 0.5rem;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 700;
+  transition: all 0.3s ease; /* For smooth hover effects */
+  cursor: pointer;
+  border: 2px solid transparent; /* Placeholder for solid border on secondary */
+}
+
+/* Modifier: The main Call-to-Action button */
+.button--primary {
+  background-color: var(--color-primary-green);
+  color: var(--color-neutral-white);
+  box-shadow: var(--shadow-subtle), var(--shadow-violet-glow-subtle);
+}
+
+.button--primary:hover {
+  background-color: var(--color-primary-green);
+  color: var(--color-text-dark);
+  /* Violet inset glow for interactive feedback on hover */
+  box-shadow: var(--shadow-violet-glow-strong-inset);
+}
+
+/* Modifier: The secondary/outline button */
+.button--secondary {
+  background-color: transparent;
+  color: var(--color-text-dark);
+  border-color: var(--color-text-dark); /* Use dark text color for the border */
+  box-shadow: var(--shadow-subtle), var(--shadow-violet-glow-subtle);
+}
+
+.button--secondary:hover {
+  background-color: var(--color-text-dark);
+  color: var(--color-neutral-white);
+  box-shadow: var(--shadow-violet-glow-strong-inset);
+}
+
+/* Style the button grouping container */
+.button-group {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem; /* Space between buttons */
+}
+
+/* ================================================= */
+/* === 5. PORTFOLIO ROWS (Zig-Zag Layout) === */
+/* ================================================= */
+
+/* Centers the portfolio content on the page */
+.project-container {
+  max-width: 75rem;
+  margin: 0 auto;
+}
+
+/* Defines the flexible structure for each project row */
+.project-row {
+  display: flex;
+  align-items: center;
+  padding: 3.75rem 1.25rem;
+}
+
+/* FIX: Rounds the top corners of the first project row for a continuous design look */
+.first-project-row {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+/* Reverses the order of columns for the zig-zag effect */
+.project-row.reverse {
+  flex-direction: row-reverse;
+}
+
+/* Alternating row backgrounds for visual separation */
+.project-row:nth-of-type(odd) {
+  background-color: var(--color-background-lightest);
+}
+
+.project-row:nth-of-type(even) {
+  background-color: var(--color-neutral-white);
+}
+
+/* Styling for the image column */
+.project-row__image {
+  flex: 1;
+  max-width: 50%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.project-row__image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  /* Applies subtle shadow and the brand-specific violet accent glow */
+  box-shadow: var(--shadow-subtle), var(--shadow-violet-glow-subtle);
+}
+
+/* Styling for the text column */
+.project-row__text {
+  flex: 1;
+  max-width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.25rem;
+}
+
+.project-row__text h1,
+h2 {
+  margin-bottom: 1rem;
+  text-align: center;
+  max-width: 26ch;
+}
+
+.project-row__text p {
+  font-size: 1.125rem;
+  line-height: 1.5;
+  max-width: 45ch;
+}
+
+.project-row__text figure {
+  margin: 0 auto;
+  width: fit-content;
+}
+
+.project-row__text blockquote {
+  font-family: "Lora", serif;
+  font-weight: 500;
+  font-style: italic;
+  font-size: 1.25em;
+  color: var(--color-text-dark);
+  border-left: solid 0.1rem var(--color-primary-green);
+  background-color: var(--color-neutral-white);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  margin: 1.5rem 0;
+  max-width: 400px;
+  /* Applies subtle shadow and the newly added subtle violet inset glow for style */
+  box-shadow: var(--shadow-subtle), var(--shadow-violet-glow-subtle-inset);
+}
+
+.project-row__text figcaption {
+  font-size: 1em;
+  text-align: right;
+  color: var(--color-primary-green);
+  margin-top: 0.5em;
+  margin-right: 1rem;
+}
+
+/* ================================================= */
+/* === 6. SLIDESHOW STYLING === */
+/* ================================================= */
+
+.slideshow {
+  max-width: 900px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.slideshow__slide {
+  display: none;
+  transition: opacity 0.6s ease-in-out;
+}
+
+.slideshow__slide.active {
+  display: block;
+  opacity: 1;
+}
+
+.slideshow__image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  /* Applies subtle shadow and the brand-specific violet accent glow */
+  box-shadow: var(--shadow-subtle), var(--shadow-violet-glow-subtle);
+}
+
+/* Styling for the previous/next slideshow controls */
+.slideshow__control--prev,
+.slideshow__control--next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: auto;
+  padding: 1rem;
+  color: var(--color-neutral-white);
+  font-weight: bold;
+  font-size: 1.5rem;
+  transition: 0.3s ease;
+  user-select: none;
+  background-color: var(--color-overlay-medium);
+  z-index: 10;
+}
+
+.slideshow__control--next {
+  right: -50px;
+  border-radius: 0 3px 3px 0;
+}
+
+.slideshow__control--prev {
+  left: -50px;
+  border-radius: 3px 0 0 3px;
+}
+
+.slideshow__control--prev:hover,
+.slideshow__control--next:hover {
+  background-color: var(--color-overlay-dark);
+  /* Adds a strong violet glow on hover for interactive feedback */
+  box-shadow: var(--shadow-violet-glow-strong);
+}
+
+#slideshow-container {
+  flex-direction: column;
+  align-items: center;
+}
+
+.slideshow-title-box {
+  text-align: center;
+  padding: 1rem 0 2rem 0;
+  color: var(--color-text-dark);
+}
+
+#slide-title-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+#slide-title {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Changes the color and adds an underline on hover */
+#slide-title-link:hover #slide-title {
+  color: var(--color-primary-green);
+  text-decoration: underline;
+  text-decoration-color: var(--color-primary-green);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+/* Styling for the slideshow dot container */
+.slideshow__dots {
+  text-align: center; /* Center the dot elements */
+  padding: 1rem 0;
+}
+
+/* Styling for the individual dot element */
+.slideshow__dot {
+  /* Create the circle shape */
+  height: 15px;
+  width: 15px;
+  margin: 0 5px;
+  background-color: var(--color-border-light); /* Light gray background */
+  border-radius: 50%; /* Makes it a circle */
+
+  /* Layout and Interaction */
+  display: inline-block; /* Allows them to sit side-by-side */
+  transition: background-color 0.6s ease;
+  cursor: pointer;
+}
+
+/* Active State: The dot corresponding to the current slide */
+.slideshow__dot.active {
+  background-color: var(--color-primary-green); /* Use your primary color */
+}
+
+/* Hover State: Provides feedback when mousing over an inactive dot */
+.slideshow__dot:hover:not(.active) {
+  background-color: var(--color-border-medium);
+}
+
+/* ================================================= */
+/* === 7. CONTACT FORM & MODAL STYLING === */
+/* ================================================= */
+
+.contact-modal__form h2 {
+  /* This rule is highly specific, targeting only the H2 inside the form.
+     It overrides the max-width: 26ch restriction from the .portfolio-text-column rule 
+     by forcing the title to use the full width of the form container. */
+  max-width: 100%;
+  /* Also ensure text alignment is centered */
+  text-align: center;
+}
+
+form {
+  border-radius: 0.3125rem;
+  background-color: var(--color-background-lightest);
+  padding: 0.625rem;
+  /* Applies general subtle shadow and violet accent glow to the form container */
+  box-shadow: var(--shadow-subtle), var(--shadow-violet-glow-subtle);
+  max-width: 90vw;
+  margin: 0 auto;
+}
+
 input[type="text"],
+input[type="email"],
 textarea {
   width: 100%;
-  padding: 0.75rem; /* 12px / 16px */
-  border: 1px solid #3cb371;
-  border-radius: 0.25rem; /* 4px / 16px */
+  padding: 0.75rem;
+  /* Uses green border for primary contrast */
+  border: 1px solid var(--color-primary-green);
+  border-radius: 0.25rem;
   box-sizing: border-box;
-  margin-top: 0.375rem; /* 6px / 16px */
-  margin-bottom: 1rem; /* 16px / 16px */
+  margin-top: 0.375rem;
+  margin-bottom: 1rem;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 1rem; /* 16px / 16px */
+  font-size: 1rem;
 }
 
-/* Submit button */
+/* Applies a strong violet glow on hover/focus for clear user interaction feedback */
+input[type="text"]:hover,
+input[type="email"]:hover,
+textarea:hover,
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+  box-shadow: var(--shadow-violet-glow-strong);
+  outline: none; /* Removes default browser focus outline */
+}
+
 input[type="submit"] {
-  background-color: #3cb371; /* Sets the background color of the submit button to black */
-  color: #333333; /* Sets the font color of the Submit button to white */
-  font-weight: bold; /* Makes the font of the submit button bold */
-  padding: 0.75rem 1.25rem; /* 12px / 16px and 20px / 16px / Adds padding to the submit button */
-  border: none; /* Removes the border from the submit button */
-  border-radius: 0.25rem; /* 4px / 16px / Gives the submit button the same rounded corners as the text boxes */
-  cursor: pointer; /* Changes the cursor to pointer when over the submit button */
-  display: block; /* Allows the submit button to be centered */
-  margin-left: auto; /* In combination with "margin-right: auto" this will center the submit button */
+  background-color: var(--color-primary-green);
+  color: var(--color-text-dark);
+  font-weight: bold;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  display: block;
+  margin-left: auto;
   margin-right: auto;
   font-size: 1rem;
 }
 
+/* Applies a strong violet inset glow to the submit button on hover */
 input[type="submit"]:hover {
-  box-shadow: 0 0 0.3125rem #f0fff4 inset; /* 5px / 16px */
+  box-shadow: var(--shadow-violet-glow-strong-inset);
 }
 
-/* Form element */
-form {
-  border-radius: 0.3125rem; /* 5px / 16px */
-  background-color: #f0fff4;
-  padding: 0.625rem; /* 10px / 16px */
-  box-shadow: 0 0 0.25rem #3cb371; /* 4px / 16px */
-  max-width: 90vw; /* Using vw for a form container that scales with the screen */
-  margin: 0 auto;
+.contact-modal {
+  display: block;
+  position: fixed;
+  z-index: 2000; /* High z-index to overlay all content */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: var(--color-overlay-dark);
+  padding-top: 50px;
 }
 
-/* ==================================== */
-/* === 1. Mobile-First Base Styles === */
-/* ==================================== */
-
-/* Hide the menu links by default for mobile */
-.nav-links {
-  display: none;
+.contact-modal__content {
+  position: relative;
+  background-color: var(--color-neutral-white);
+  margin: 5% auto;
+  padding: 20px;
+  /* Uses a medium gray border variable for consistency */
+  border: 1px solid var(--color-border-medium);
+  width: 80%;
+  box-shadow: var(--shadow-modal);
+  animation-name: modal-open-anim;
+  animation-duration: 0.4s;
 }
 
-/* Show the menu links when the `responsive` class is added */
-.navbar.responsive .nav-links {
-  display: block; /* or flex, grid, etc. */
+/* Keyframes for the modal open animation (slide down and fade in) */
+@keyframes modal-open-anim {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Ensure the hamburger icon is visible on mobile */
-.icon {
-  display: block; /* Assuming you hide it later for desktop */
+.contact-modal__form .contact-modal__button--submit {
+  background-color: var(--color-button-success);
+  color: var(--color-neutral-white);
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
 }
 
-/* ==================================== */
-/* === Responsive Behavior === */
-/* ==================================== */
-/*  use of pix vs relative for consistent visual layout across all browsers and user settings */
-/* Style the space OUTSIDE the 1200px container on large screens */
+/* Applies a strong violet inset glow to modal buttons on hover */
+.contact-modal__form .contact-modal__button--submit:hover {
+  box-shadow: var(--shadow-violet-glow-strong-inset);
+}
+
+/* Close Contact modal Icon Styles */
+.contact-modal__close-icon {
+  position: absolute;
+  top: 20px; /* Adjust vertical position */
+  right: 23px; /* Adjust horizontal position */
+  background: none;
+  border: none;
+  font-size: 22px; /* Larger size for better tap target */
+  color: var(--color-text-dark);
+  cursor: pointer;
+  padding: 5px;
+  line-height: 1;
+  /* CORRECTED: Only transition the color property */
+  transition: color 0.2s ease;
+  z-index: 10;
+}
+
+.contact-modal__close-icon:hover {
+  /* Clear hover feedback: change to accent violet */
+  color: var(--color-accent-violet);
+  /* Removed: transform: scale(1.1); */
+}
+
+/* ================================================= */
+/* === 8. RESPONSIVE MEDIA QUERIES === */
+/* ================================================= */
+
+/* --- Desktop Styles (min-width: 1201px) --- */
 @media (min-width: 1201px) {
-  .portfolio-container {
-    position: relative; /* Required for positioning the pseudo-element */
+  .project-container {
+    position: relative;
     max-width: 1200px;
-    margin: 0 auto; /* Centers the container */
+    margin: 0 auto;
   }
 
-  .portfolio-container::before {
+  /* Creates a subtle radial gradient background effect for large screens */
+  .project-container::before {
     content: "";
     position: absolute;
     top: 0;
@@ -284,93 +773,199 @@ form {
     transform: translateX(-50%);
     width: 100vw;
     height: 100%;
-    z-index: -1; /* Puts the background behind the content */
+    z-index: -1;
     background-image: radial-gradient(
       circle,
-      rgba(60, 179, 113, 1) 0%,
-      /* Semi-transparent black at the center */ rgba(240, 255, 244, 1) 70%
-        /* Fading to fully transparent further out */
-    ); /* Your desired accent color */
+      var(--color-primary-green) 0%,
+      var(--color-background-lightest) 70%
+    );
   }
 }
 
+/* --- Tablet/Mobile Styles (max-width: 768px) --- */
 @media (max-width: 768px) {
-  .portfolio-row,
-  .portfolio-row.reverse {
-    flex-direction: column; /* Stacks image on top of text on small screens */
+  /* 1. LAYOUT: Stacks the portfolio image and text columns vertically */
+  .project-row,
+  .project-row.reverse {
+    flex-direction: column;
     gap: 20px;
   }
 
-  .portfolio-image-column,
-  .portfolio-text-column {
-    max-width: 100%; /* Columns take up full width on mobile */
+  .project-row__image,
+  .project-row__text {
+    max-width: 100%;
   }
 
-  /* ==================================== */
-  /* === HAMBURGER MENU CSS === */
-  /* ==================================== */
-  /* Show the active page name by default on mobile */
+  /* 2. SLIDESHOW FIX: Ensures controls are visible on small screens by repositioning them */
+  .slideshow {
+    max-width: 95vw;
+  }
+
+  .slideshow__control--prev,
+  .slideshow__control--next {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .slideshow__control--prev {
+    left: 0;
+    border-radius: 0 3px 3px 0;
+  }
+
+  .slideshow__control--next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+
+  /* ================================================= */
+  /* === MOBILE NAVIGATION (Hamburger Menu) === */
+  /* ================================================= */
+
+  /* Resets navbar to block flow for mobile layout */
+  .navbar {
+    display: block;
+    height: auto;
+    /* FIX: Hides any content that overflows the navbar's boundaries, 
+     preventing scrollbars from the transform: scale(1.1) hover effect. */
+    overflow: hidden;
+  }
+
+  /* Styles the hamburger/X icon, pinned to the top right */
+  .navbar .navbar__toggle {
+    display: block;
+    padding: 1rem;
+    color: var(--color-accent-violet);
+    float: right;
+    order: 2;
+    z-index: 1100;
+    text-decoration: none;
+    cursor: pointer;
+    /* CORRECTED: Only transition the color property */
+    transition: color 0.2s ease;
+  }
+
+  /* Styles the active page name which floats left, opposite the icon */
   .navbar:not(.responsive) .active-page-name {
     display: block;
-    color: white;
+    color: var(--color-neutral-white);
     font-weight: bold;
     padding: 1rem;
-    float: left; /* Aligns the text to the left */
+    float: left;
+    order: 1;
   }
 
-  /* Adjustments for the mobile navbar */
-  .navbar a {
+  /* Menu links container is hidden by default in mobile view */
+  .navbar__links {
+    display: none;
+    width: 100%;
+    clear: both; /* Ensures the stacked links fall below the floated header elements */
+  }
+
+  /* Menu links container SHOWS when the 'responsive' class is toggled (menu open) */
+  .navbar.responsive .navbar__links {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  /* Resets link flow for stacking in the mobile menu */
+  .navbar__link {
     float: none;
     display: block;
-  }
-
-  /* Base styles for the menu links, hidden by default on mobile */
-  .nav-links {
-    display: none;
-  }
-
-  .navbar .nav-links {
-    display: none; /* Hide the links by default on small screens */
-    flex-direction: column; /* Stack vertically when shown */
-    width: 100%;
-    background-color: #333333;
-  }
-
-  .navbar a:not(.icon) {
-    float: none;
     text-align: left;
   }
 
-  /* Show the hamburger icon on smaller screens */
-  .navbar .icon {
-    display: block;
-    float: right;
-    color: #ff00ff;
-  }
-
-  /* Style for the "Home" link in the collapsed menu */
-  .navbar a.active {
-    background-color: #f0fff4;
-    color: #333333;
-  }
-}
-
-/* ================================== */
-/* === 2. Desktop Media Query === */
-/* ================================== */
-
-/* Define a breakpoint for larger screens, e.g., 768px */
-@media screen and (min-width: 768px) {
-  /* On desktop, hide the hamburger icon */
-  .icon {
+  /* Switches the Hamburger icon to an X icon when the menu is open */
+  .navbar.responsive .navbar__toggle i {
     display: none;
   }
 
-  /* On desktop, show the nav links by default and remove the responsive styles */
-  .nav-links {
-    display: flex;
-    justify-content: flex-end; /* Pushes the links to the far right */
-    align-items: center; /* Vertically centers the links */
-    flex-grow: 1; /* Causes the container to take up all available space */
+  /* Corrected hover effect: Simple Color Change (affects both hamburger and 'X') */
+  .navbar .navbar__toggle:hover {
+    /* No heavy background change, no scrollbars */
+    background-color: transparent;
+    /* Change icon color to white for high contrast on the dark background */
+    color: var(--color-neutral-white);
+    /* Removed: transform: scale(1.1); */
+    box-shadow: none;
+    text-decoration: none;
   }
+
+  /* Switches the Hamburger icon to an X icon when the menu is open */
+  .navbar.responsive .navbar__toggle::before {
+    content: "\f00d"; /* Font Awesome unicode for fa-times (X) */
+    font-family: "FontAwesome";
+    color: var(--color-accent-violet);
+    font-size: 1.125rem;
+    text-decoration: none;
+    cursor: pointer;
+    /* NEW: Add transition so the hover effect is smooth */
+    transition: color 0.2s ease;
+  }
+
+  /* NEW: Apply the hover color directly to the visible 'X' pseudo-element */
+  .navbar.responsive .navbar__toggle:hover::before {
+    color: var(--color-neutral-white);
+  }
+
+  /* Generic active link styling for mobile, no corner radius required */
+  .navbar__link.active {
+    background-color: var(--color-text-dark);
+    color: var(--color-background-lightest);
+  }
+
+  .navbar.responsive .navbar__link.active {
+    background-color: var(--color-text-dark);
+    color: var(--color-background-lightest);
+  }
+
+  /* Hides the current page title when the full menu is open to simplify the top bar */
+  .navbar.responsive .active-page-name {
+    display: none;
+  }
+
+  /* NEW FIX: Hides the desktop inverted corner pseudo-elements 
+   so they do not interfere with the stacked mobile menu links. */
+  .navbar .navbar__link--bracket-left.navbar__link::after,
+  .navbar .navbar__link--bracket-right.navbar__link::after,
+  .navbar__spacer-right::after {
+    content: none;
+  }
+}
+
+/* --- Desktop (min-width: 769px) --- */
+/* UPDATED: Changed min-width from 768px to 769px to resolve the conflict at the 768px breakpoint. */
+@media screen and (min-width: 769px) {
+  /* On desktop, the hamburger icon is not needed */
+  .navbar__toggle {
+    display: none;
+  }
+
+  /* On desktop, show the nav links by default and use flexbox for proper horizontal positioning */
+  .navbar__links {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-grow: 1;
+  }
+
+  /* NEW LOCATION: This rule ONLY applies on desktop (769px+)
+     It overrides the border-left set in the base style to create the zig-zag border effect. */
+  .project-row.reverse .project-row__text blockquote {
+    border-left: none;
+    border-right: solid 0.1rem var(--color-primary-green);
+  }
+}
+
+/* Accessibility: Visually hidden but readable by screen readers */
+.sr-only {
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 }

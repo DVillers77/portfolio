@@ -22,6 +22,9 @@
 
     <link rel="stylesheet" href="css/stylesheet.css" />
 
+    <!-- Link to the external JavaScript file -->
+    <script src="js/script.js" defer></script>
+
     <title>Dave's Portfolio</title>
   </head>
   <body id="top">
@@ -31,8 +34,8 @@
         <!-- Hamburger button visible on mobile -->
         <a
           href="javascript:void(0);"
-          class="icon"
-          onclick="myFunction()"
+          class="navbar__toggle"
+          onclick="toggleMobileNav()"
           role="button"
           aria-label="Toggle navigation menu"
           aria-controls="nav-links-menu"
@@ -42,60 +45,84 @@
         </a>
 
         <!-- Menu links container -->
-        <div class="nav-links" id="nav-links-menu">
-          <a class="active active-page-name" aria-current="page"
+        <div class="navbar__links">
+          <div class="navbar__spacer-right"></div>
+
+          <a class="active active-page-name navbar__link" aria-current="page"
             ><i class="fa fa-fw fa-fort-awesome"></i> Home</a
           >
-          <a href="./about.html"><i class="fa fa-fw fa-heartbeat"></i> About</a>
-          <a href="./projects.html"
+          <a
+            href="./about.html"
+            class="navbar__link--bracket-right navbar__link"
+            ><i class="fa fa-fw fa-heartbeat"></i> About</a
+          >
+          <a href="./projects.html" class="navbar__link"
             ><i class="fa fa-fw fa-code"></i> Projects</a
           >
           <a
-            href="https://github.com/the-tech-academy"
+            href="https://github.com/DVillers77"
             target="_blank"
             rel="noopener noreferrer"
+            class="navbar__link"
             ><i class="fa fa-fw fa-github"></i> GitHub</a
           >
-          <a href="./contact.html"
+          <a class="navbar__link--contact-trigger navbar__link" href="#"
             ><i class="fa fa-fw fa-hand-o-right"></i> Contact</a
           >
         </div>
       </nav>
     </header>
     <!-- MAIN PORTFOLIO CONTENT -->
-    <main class="portfolio-container">
+    <main class="project-container">
+      <section class="hero-pitch">
+        <div class="hero-pitch__text">
+          <h1>UX Designer & Front-End Developer</h1>
+
+          <p>
+            Hello, I am Dave welcome to my portfolio page. I am a designer
+            rooted in **human-centered service**, leveraging two decades of
+            professional empathy to solve digital problems. I combine this
+            insight with proficiency in **Vanilla JavaScript**, **A11y**, and
+            modern CSS architecture to deliver accessible and high-quality web
+            applications.
+          </p>
+          <p>
+            My portfolio includes my story, some projects, a link to my entire
+            github collection and a form to contact me.
+          </p>
+        </div>
+      </section>
       <!-- ROW 1 (Image Left, Text Right) -->
-      <section class="portfolio-row">
-        <div class="portfolio-image-column">
+      <section class="project-row first-project-row">
+        <div class="project-row__image">
           <img
             src="images/under-construction-magic-md.png"
             alt="Illustration of a fantasy castle with an 'UNDER CONSTRUCTION' sign, symbolizing both an upcoming homepage and a portfolio in progress."
           />
         </div>
-        <div class="portfolio-text-column">
-          <h1>David Villers' Portfolio</h1>
+        <div class="project-row__text">
+          <h2>
+            Crafting Intuitive Experiences Backed by Deep Empathy and Technical
+            Mastery.
+          </h2>
           <p>
-            Welcome to my portfolio website. In it, I will tell you about my
-            background, experience and show you a preview of some of my
-            projects.
+            This section highlights my design ethos with some of my favorite UX
+            Design quotes and custom imagery I created with the assistance of
+            AI. Enjoy the creative and inspirational art and quotes.
           </p>
-          <p>
-            For a more in-depth view of my projects and educational process
-            while attending the Tech Academy UI/UX Design Bootcamp please use
-            the GitHub link. To get in touch please use the form on my contact
-            page. I look forward to chatting with you about design and or job
-            opportunities.
-          </p>
-          <p>
-            Below are some quotes reflecting ideas that are important to my
-            personal and design philosophies.
-          </p>
+          <h3>Jump to section:</h3>
+          <div class="button-group">
+            <a href="projects.html" class="button button--primary"
+              >View Projects</a
+            >
+            <a href="about.html" class="button button--secondary">My Story</a>
+          </div>
         </div>
       </section>
 
       <!-- ROW 2 (Image Right, Text Left) -->
-      <section class="portfolio-row reverse">
-        <div class="portfolio-image-column">
+      <section class="project-row reverse">
+        <div class="project-row__image">
           <img
             src="images/flying-steam-engine-md.png"
             alt='A fantastical
@@ -104,7 +131,7 @@
       hour, embodying "Curiosity is the engine of achievement."'
           />
         </div>
-        <div class="portfolio-text-column">
+        <div class="project-row__text">
           <h2>The importance of Curiosity</h2>
           <figure>
             <blockquote>
@@ -116,14 +143,14 @@
       </section>
 
       <!-- Row 3 (Image Left, Text Right) -->
-      <section class="portfolio-row">
-        <div class="portfolio-image-column">
+      <section class="project-row">
+        <div class="project-row__image">
           <img
             src="images/sketchplanations-the-curb-cut-effect-md.png"
             alt="Curb-Cut Effect illustration: A sidewalk ramp benefits a diverse group including a person in a wheelchair, parents with strollers, travelers with luggage, delivery persons, and cyclists. Text reads: 'WHEN WE DESIGN FOR DISABILITIES ... WE MAKE THINGS BETTER FOR EVERYONE. Sketchplanations.'"
           />
         </div>
-        <div class="portfolio-text-column">
+        <div class="project-row__text">
           <h2>The Power of Inclusive Design</h2>
           <figure>
             <blockquote>
@@ -134,14 +161,14 @@
         </div>
       </section>
       <!-- Row 4(Image Right, Text Left) -->
-      <section class="portfolio-row reverse">
-        <div class="portfolio-image-column">
+      <section class="project-row reverse">
+        <div class="project-row__image">
           <img
             src="images/designing-for-people-md.png"
             alt="Conceptual image depicting a human mind integrated with mechanical gears, illustrating the importance of understanding human cognition when designing technology."
           />
         </div>
-        <div class="portfolio-text-column">
+        <div class="project-row__text">
           <h2>Designing for people, not technology</h2>
           <figure>
             <blockquote>
@@ -155,14 +182,14 @@
         </div>
       </section>
       <!-- Row 3 (Image Left, Text Right) -->
-      <section class="portfolio-row">
-        <div class="portfolio-image-column">
+      <section class="project-row">
+        <div class="project-row__image">
           <img
             src="images/dain-miller-sadle-reigns-quote-md.png"
             alt="A conceptual digital illustration depicting a silhouetted figure confidently riding a glowing wireframe horse, its form made of digital elements and geometric, luminous UI-like saddle, stirrups, and reins. The overall scene is enveloped in a radiant, swirling aura of abstract colors, symbolizing the positive user experience (UX) derived from intuitive user interface (UI). This imagery visually represents Dain Miller's quote: 'UI is the saddle, the stirrups, & the reins. UX is the feeling you get from being able to ride the horse'."
           />
         </div>
-        <div class="portfolio-text-column">
+        <div class="project-row__text">
           <h2>From Interface to Intuition: The UX Journey</h2>
           <figure>
             <blockquote>
@@ -176,27 +203,77 @@
         </div>
       </section>
     </main>
-    <!-- FOOTER NAVBAR -->
+    <!-- FOOTER/ NAVBAR -->
     <footer>
       <nav class="navbar bottom" aria-label="Footer navigation">
-        <a class="active" href="#top"
-          ><i class="fa fa-fw fa-arrow-up"></i> Back to Top</a
+        <a href="#top" class="navbar__link"
+          ><i class="fa fa-fw fa-arrow-up"></i> Top</a
         >
-        <a href="./about.html"><i class="fa fa-fw fa-heartbeat"></i> About</a>
-        <a href="./projects.html"><i class="fa fa-fw fa-code"></i> Projects</a>
+        <a href="./about.html" class="navbar__link"
+          ><i class="fa fa-fw fa-heartbeat"></i> About</a
+        >
+        <a href="./projects.html" class="navbar__link"
+          ><i class="fa fa-fw fa-code"></i> Projects</a
+        >
 
         <a
-          href="https://github.com/the-tech-academy"
+          href="https://github.com/DVillers77"
           target="_blank"
           rel="noopener noreferrer"
+          class="navbar__link"
           ><i class="fa fa-fw fa-github"></i> GitHub</a
         >
-        <a href="./contact.html"
+        <a class="navbar__link--contact-trigger navbar__link" href="#"
           ><i class="fa fa-fw fa-hand-o-right"></i> Contact</a
         >
       </nav>
     </footer>
-    <!-- Link to the external JavaScript file -->
-    <script src="js/script.js" defer></script>
+    <!-- Contact Modal -->
+    <template id="contact-modal-template">
+      <div id="contact-modal" class="contact-modal">
+        <div class="contact-modal__content">
+          <button
+            type="button"
+            class="contact-modal__close-icon"
+            aria-label="Close contact form"
+          >
+            <i class="fa fa-close"></i>
+          </button>
+          <form
+            action="https://formspree.io/f/xovnjzlr"
+            method="POST"
+            class="contact-modal__form"
+          >
+            <h2>Contact Me</h2>
+            <label for="name"><b>Name</b></label>
+            <input
+              type="text"
+              placeholder="Enter your name"
+              name="name"
+              required
+            />
+
+            <label for="email"><b>Email</b></label>
+            <input
+              type="email"
+              placeholder="Enter your email"
+              name="email"
+              required
+            />
+
+            <label for="message"><b>Message</b></label>
+            <textarea
+              placeholder="Tell me about your project..."
+              name="message"
+              required
+            ></textarea>
+
+            <button type="submit" class="contact-modal__button--submit">
+              SEND MESSAGE
+            </button>
+          </form>
+        </div>
+      </div>
+    </template>
   </body>
 </html>
