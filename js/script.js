@@ -57,16 +57,34 @@ document.addEventListener("DOMContentLoaded", (event) => {
         slideIndex = slides.length;
       }
       const totalSlides = slides.length;
+
+      // 1. Loop to HIDE all slides (by removing the 'active' class)
       for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
+        // CRITICAL FIX: Remove 'active' class (CSS sets opacity: 0, z-index: 0)
+        slides[i].classList.remove("active");
+
+        // Remove old style.display line if it exists
+        // slides[i].style.display = "none";
+
         slides[i].removeAttribute("aria-current");
       }
+
       for (i = 0; i < dots.length; i++) {
         dots[i].className = dots[i].className.replace(" active", "");
       }
+
       const currentSlide = slides[slideIndex - 1];
-      currentSlide.style.display = "block";
+
+      // 2. ACTIVATE the current slide (by adding the 'active' class)
+      currentSlide.classList.add("active");
+
+      // Remove old style.display line if it exists
+      // currentSlide.style.display = "block";
+
+      // ACTIVATE the dot
       dots[slideIndex - 1].className += " active";
+
+      // Update ARIA attributes
       currentSlide.setAttribute("aria-current", "true");
       currentSlide.setAttribute(
         "aria-label",
@@ -74,11 +92,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
           "data-title"
         )}`
       );
+
       if (announcer) {
         announcer.textContent = `${currentSlide.getAttribute(
           "data-title"
         )}, slide ${slideIndex} of ${totalSlides}`;
       }
+
       if (slideTitleElement && slideTitleLink) {
         const currentTitle = currentSlide.getAttribute("data-title");
         const currentImage = currentSlide.querySelector(".slideshow__image");

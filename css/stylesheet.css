@@ -483,13 +483,18 @@ h2 {
 /* ================================================= */
 
 .slideshow {
-  max-width: 900px;
+  max-width: 900px; /* Maintains responsiveness */
   position: relative;
   margin: 0 auto;
+  /* Use the tallest image height for fixed container size */
+  height: 500px;
+  overflow: hidden;
 }
 
 .slideshow__slide {
+  /* No position: absolute, no z-index, no visibility rules */
   display: none;
+  opacity: 0;
   transition: opacity 0.6s ease-in-out;
 }
 
@@ -500,10 +505,12 @@ h2 {
 
 .slideshow__image {
   width: 100%;
-  height: auto;
+  /* CRITICAL FIX: Ensure image fills the fixed container height */
+  height: 500px;
+  /* Use 'cover' for clean, consistent previews (will crop the top/bottom if image is too wide) */
+  object-fit: contain;
   display: block;
   border-radius: 8px;
-  /* Applies subtle shadow and the brand-specific violet accent glow */
   box-shadow: var(--shadow-subtle), var(--shadow-violet-glow-subtle);
 }
 
@@ -513,6 +520,7 @@ h2 {
   cursor: pointer;
   position: absolute;
   top: 50%;
+  left: 50%;
   transform: translateY(-50%);
   width: auto;
   padding: 1rem;
@@ -522,16 +530,18 @@ h2 {
   transition: 0.3s ease;
   user-select: none;
   background-color: var(--color-overlay-medium);
-  z-index: 10;
+  z-index: 100;
 }
 
+/* 1. Anchors the RIGHT button to the center of the page, then pushes it out */
 .slideshow__control--next {
-  right: -50px;
+  margin-left: 270px;
   border-radius: 0 3px 3px 0;
 }
 
+/* 2. Anchors the LEFT button to the center of the page, then pushes it out */
 .slideshow__control--prev {
-  left: -50px;
+  margin-left: -312px;
   border-radius: 3px 0 0 3px;
 }
 
@@ -545,6 +555,7 @@ h2 {
 #slideshow-container {
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 
 .slideshow-title-box {
@@ -803,16 +814,22 @@ input[type="submit"]:hover {
 
   .slideshow__control--prev,
   .slideshow__control--next {
+    /* CRITICAL FIX: These lines wipe out conflicting desktop rules */
+    left: auto; /* Wipes out the desktop's left: 50% */
+    right: auto; /* Wipes out potential right conflicts */
+    margin-left: 0; /* Wipes out the large desktop pixel offsets (-312px, 270px) */
+    margin-top: -120px; /* Centers button vertically (Half of estimated button height) */
+    /* Mobile-specific padding/sizing */
     padding: 0.5rem 0.75rem;
   }
 
   .slideshow__control--prev {
-    left: 0;
+    left: 0.25rem; /* Pushes button to the left edge of the responsive container */
     border-radius: 0 3px 3px 0;
   }
 
   .slideshow__control--next {
-    right: 0;
+    right: 0.25rem; /* Pushes button to the right edge of the responsive container */
     border-radius: 3px 0 0 3px;
   }
 
@@ -935,6 +952,10 @@ input[type="submit"]:hover {
 /* --- Desktop (min-width: 769px) --- */
 /* UPDATED: Changed min-width from 768px to 769px to resolve the conflict at the 768px breakpoint. */
 @media screen and (min-width: 769px) {
+  .slideshow__control--prev,
+  .slideshow__control--next {
+    transform: translateY(-160%);
+  }
   /* On desktop, the hamburger icon is not needed */
   .navbar__toggle {
     display: none;
