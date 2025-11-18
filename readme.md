@@ -15,8 +15,12 @@ focusing on stability and maintainability.
 
 - **Dual Expertise:** Serves as a direct showcase for both UX design philosophy
   and robust front-end implementation.
-- **Scalable CSS:** Utilizes **CSS Custom Properties (`:root` variables)** for a
-  modular and easily themeable color palette, shadows, and spacing.
+- **Design System Implementation:** Now features a complete, centralized
+  **Design System** utilizing **CSS Custom Properties** for the entire **Color
+  Palette** and a consistent **Typography System** (Poppins & Inter).
+- **Modern Typography:** Implements the **Poppins** typeface for all
+  **Display/Headlines** and the **Inter** typeface for **Body/UI Text**,
+  ensuring a professional and legible aesthetic across all pages.
 - **Performance Optimization:** Aggressively optimized image assets and utilizes
   resource hints (`<link rel="preconnect">`) for fast loading.
 
@@ -28,25 +32,28 @@ focusing on stability and maintainability.
 - **Accessible Dynamic Content:** The project slideshow uses ARIA attributes
   (`aria-current`, `aria-live`) to ensure dynamic content changes are announced
   to screen readers.
+- **Synchronized Mobile Navigation:** The mobile toggle button's `aria-expanded`
+  state is programmatically synchronized with the navigation's visual state,
+  guaranteeing **state accuracy** for screen readers.
 
 ### Vanilla JavaScript Implementation
 
-- **Complex Scroll Handling:** Implements a custom JavaScript solution
-  (`setupAnchorHandler`) to achieve smooth scrolling while preventing known
-  browser history corruption issues.
-- **Clean DOM Manipulation:** All dynamic elements (e.g., the Contact Modal) are
-  created and managed outside the main DOM via the `<template>` tag for clean
-  injection and removal.
+- **Robust Scroll & Focus:** The custom `setupAnchorHandler` function prevents
+  URL corruption via `e.preventDefault()` and ensures **smooth scroll stability
+  and correct keyboard focus** via a deferred focus call, eliminating browser
+  jump artifacts.
+- **Complex Modal Logic:** Manages the full lifecycle of the Contact Modal,
+  including display, close logic (button/escape key/click-outside), and scroll
+  management persistence, DOM manipulation, and user input validation.
 
 ---
 
-## 🛠️ Project Showcase
+## 🛠️ Project Modules
 
-| Project             | Description                                                                                                             |                 View Code                  |      View Live Demo      |
-| :------------------ | :---------------------------------------------------------------------------------------------------------------------- | :----------------------------------------: | :----------------------: |
-| **Tic-Tac-Toe AI**  | Implements the **Minimax algorithm** for an unbeatable AI opponent, showcasing complex game logic and state management. |            [Link to Repository]            |   [Link to Live Demo]    |
-| **To-Do App**       | A simple task manager demonstrating local storage persistence, DOM manipulation, and user input validation.             |            [Link to Repository]            |   [Link to Live Demo]    |
-| **Image Slideshow** | Custom, accessible slideshow with keyboard controls (Arrow Keys) and dynamic ARIA updates for screen reader users.      | Included in the main portfolio repository. | N/A (Integrated feature) |
+| Module              | Description                                                                                                        | Repository                                 | Live Demo                |
+| :------------------ | :----------------------------------------------------------------------------------------------------------------- | :----------------------------------------- | :----------------------- |
+| **Contact Modal**   | Implements a fully accessible, keyboard-trapped modal using vanilla JS for form submission and scroll-locking.     | [Link to Repository]                       | [Link to Live Demo]      |
+| **Image Slideshow** | Custom, accessible slideshow with keyboard controls (Arrow Keys) and dynamic ARIA updates for screen reader users. | Included in the main portfolio repository. | N/A (Integrated feature) |
 
 **(NOTE: Update the [Link to Repository] and [Link to Live Demo] fields before
 publishing.)**

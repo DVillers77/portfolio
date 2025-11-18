@@ -8,10 +8,14 @@
 function toggleMobileNav() {
   const navBar = document.getElementById("myNavbar");
   const navToggleButton = document.querySelector(".navbar__toggle");
+  // 1. Toggle the visual class first.
   navBar.classList.toggle("responsive");
-  const expanded =
-    navToggleButton.getAttribute("aria-expanded") === "true" || false;
-  navToggleButton.setAttribute("aria-expanded", !expanded);
+
+  // 2. Read the DEFINITIVE state from the visual element itself.
+  const isExpanded = navBar.classList.contains("responsive");
+
+  // 3. Set the ARIA attribute to match the definitive visual state.
+  navToggleButton.setAttribute("aria-expanded", isExpanded);
 }
 
 /**
