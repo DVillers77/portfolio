@@ -7,6 +7,20 @@ codebase (DRY principle).
 
 ---
 
+## 0. Brand Message & Design Principles
+
+The design of this portfolio is guided by four core principles to communicate
+the desired brand identity of a highly effective UX Engineer.
+
+| Principle            | Supporting Design Element                                                                                                                                        |
+| :------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **PROFESSIONAL**     | Utilizes high **WCAG AA** contrast ratios and a clean, legible typography scale (Inter).                                                                         |
+| **SUCCESS**          | Primary accent color (`--color-primary-green`) is reserved for Call-to-Action (CTA) elements, signaling positive engagement.                                     |
+| **CREATIVE**         | Secondary accent color (`--color-accent-violet`) is used for unique decorative elements (e.g., hover glows, shadows) to demonstrate imaginative problem-solving. |
+| **FORWARD-THINKING** | Built on a modern **Design System architecture** using **CSS variables** for global scalability and future Dark Mode implementation.                             |
+
+---
+
 ## 1. Typography
 
 We use a modern, minimalist font pairing to ensure high legibility and a
