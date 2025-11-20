@@ -56,32 +56,38 @@
 :root {
   /* Establishes 1rem = 16px */
   font-size: 100%;
+  /* TYPOGRAPHY VARIABLES */
+  --font-display: "Poppins", sans-serif; /* For H1, H2, Navbar */
+  --font-body: "Inter", sans-serif; /* For P, Lists, UI text */
+  --font-size-base: 1rem;
 }
 
 body {
+  /* Ensures the base font-family uses the variable */
   font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  color: var(
+    --color-text-dark
+  ); /* Ensure accessibility by defaulting to the dark color */
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color: var(--color-text-dark);
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-/* Ensure headings use the absolute darkest color for strong contrast/emphasis */
+/* Ensure all headings use the display font */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  /* Set font family for all headings (h1-h6) to Poppins */
   font-family: var(--font-display);
-  color: var(
-    --color-text-black
-  ); /* Jet Black: Overrides the inherited Dark Gray */
+  /* Ensure the darkest color is used for highest contrast */
+  color: var(--color-text-black);
 }
 
 /* Mobile base font sizes */
